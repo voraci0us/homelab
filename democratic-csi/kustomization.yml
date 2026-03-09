@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - namespace.yaml
+  - helmrepository.yaml
+  - values-dataset-configmap.yaml
+  - values-zvol-configmap.yaml
+  - helmrelease-dataset.yaml
+  - helmrelease-zvol.yaml
