@@ -7,7 +7,7 @@ There are two large ZFS pools, one for HDDs and one for SSDs. These are mirrored
 
 The HDDs represent a large storage array. The ZFS dataset is mounted directly on my host and managed either locally or over SMB in the local network. This is always mounted read-only be any containers or VMs that need to access it.
 
-The SSDs are, of course, for performance-sensitive workloads. For Kubernetes, the intention is to run both container workloads and virtual machines (Kubevirt). I'm using [democratic-csi](https://github.com/democratic-csi/democratic-csi) to create separate storage classes that provision datasets and zvols for these, respectively.
+The SSDs are, of course, for performance-sensitive workloads. For Kubernetes, the intention is to run both container workloads and virtual machines (Kubevirt). I'm using [democratic-csi](https://github.com/democratic-csi/democratic-csi) to create separate storage classes that provision datasets and zvols for these, respectively. I'll note that k3s uses [local-path-provisioner](https://github.com/rancher/local-path-provisioner) by default, which would be fine for container volumes on a single node except for the fact that quotas cannot be enforced (i.e. the container could continue filling up the disk until the host is out of storage).
 
 ## GitOps
 
