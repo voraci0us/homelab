@@ -42,10 +42,8 @@ spec:
       enabled: false
 
     service:
-      type: NodePort
+      type: LoadBalancer
       port: 8096
-      targetPort: 8096
-      nodePort: 30096
 
 
     nodeSelector: {}
