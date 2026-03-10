@@ -32,6 +32,8 @@ spec:
 
     server:
       replicas: 1
+      ingress:
+        enabled: false
 
     worker:
       replicas: 1
@@ -42,6 +44,3 @@ spec:
         username: authentik
         database: authentik
         existingSecret: authentik-postgresql
-
-    ingress:
-      enabled: false
