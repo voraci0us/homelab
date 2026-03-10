@@ -21,8 +21,8 @@ spec:
   values:
     global:
       envFrom:
-      - secretRef:
-          name: authentik-config
+        - secretRef:
+            name: authentik-config
           
     authentik:
       secret_key: "env://SECRET_KEY"
