@@ -20,11 +20,11 @@ spec:
       retries: 3
   values:
     authentik:
-      secret_key: "env://AUTHENTIK_SECRET_KEY"
+      secret_key: "env://SECRET_KEY"
       error_reporting:
         enabled: false
       postgresql: 
-        password: "env://AUTHENTIK_POSTGRESQL__PASSWORD"
+        password: "env://POSTGRESQL_PASSWORD"
 
       envFrom:
         secretRef:
