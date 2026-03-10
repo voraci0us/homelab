@@ -19,16 +19,17 @@ spec:
     remediation:
       retries: 3
   values:
+    global:
+      envFrom:
+        secretRef:
+          name: authentik-config
+          
     authentik:
       secret_key: "env://SECRET_KEY"
       error_reporting:
         enabled: false
       postgresql: 
         password: "env://POSTGRESQL_PASSWORD"
-
-      envFrom:
-        secretRef:
-          name: authentik-config
 
     server:
       replicas: 1
