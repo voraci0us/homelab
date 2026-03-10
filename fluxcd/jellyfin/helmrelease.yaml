@@ -28,10 +28,12 @@ spec:
     persistence:
       cache:
         enabled: true
+        type: pvc
         size: 25Gi
         storageClass: zfs-local-dataset
       config:
         enabled: true
+        type: pvc
         size: 5Gi
         storageClass: zfs-local-dataset
       media:
