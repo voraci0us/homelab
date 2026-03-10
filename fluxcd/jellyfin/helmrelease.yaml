@@ -26,11 +26,6 @@ spec:
       pullPolicy: IfNotPresent
 
     persistence:
-      cache:
-        enabled: true
-        type: pvc
-        size: 25Gi
-        storageClass: zfs-local-dataset
       config:
         enabled: true
         type: pvc
@@ -44,6 +39,20 @@ spec:
     ingress:
       enabled: false
 
+    jellyfin:
+      env:
+        - name: JELLYFIN_CACHE_DIR
+          value: /cache
+
+    volumes:
+      - name: cache
+        persistentVolumeClaim:
+          claimName: jellyfin-cache
+
+    volumeMounts:
+      - name: cache
+        mountPath: /cache
+        
     service:
       type: LoadBalancer
       port: 8096

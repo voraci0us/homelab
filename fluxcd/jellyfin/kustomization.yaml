@@ -4,3 +4,4 @@ resources:
   - helmrelease.yaml
   - helmrepository.yaml
   - namespace.yaml
+  - vpc-cache.yaml
