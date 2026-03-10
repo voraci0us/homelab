@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - ./infra/democratic-csi
   - ./infra/flux-system
+  - ./infra/jellyfin
