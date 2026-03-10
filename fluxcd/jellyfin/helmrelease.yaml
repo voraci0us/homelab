@@ -19,7 +19,7 @@ spec:
   upgrade:
     remediation:
       retries: 3
-  values: |
+  values:
     replicaCount: 1
 
     image:
@@ -29,14 +29,15 @@ spec:
       cache:
         enabled: true
         size: 25Gi
-        storageClass: 'zfs-local-dataset'
+        storageClass: zfs-local-dataset
       config:
         enabled: true
         size: 5Gi
-        storageClass: 'zfs-local-dataset'
+        storageClass: zfs-local-dataset
       media:
         enabled: true
-        hostPath: '/tank/media'
+        type: hostPath
+        hostPath: /tank/media
 
     ingress:
       enabled: false
@@ -44,7 +45,6 @@ spec:
     service:
       type: LoadBalancer
       port: 8096
-
 
     nodeSelector: {}
     tolerations: []
