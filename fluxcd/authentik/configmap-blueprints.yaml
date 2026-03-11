@@ -64,14 +64,7 @@ data:
 
       - model: authentik_core.application
         attrs:
-          backchannel_providers: []
-          group: ''
-          meta_description: ''
-          meta_icon: ''
-          meta_launch_url: ''
-          meta_publisher: ''
           name: Jellyfin
-          open_in_new_tab: false
           policy_engine_mode: any
           provider: !KeyOf provider-ldap
           slug: jellyfin
@@ -79,5 +72,19 @@ data:
         id: application-jellyfin
         identifiers:
           slug: jellyfin
+        permissions: []
+        state: present
+
+      - model: authentik_outposts.outpost
+        attrs:
+          config:
+            authentik_host: http://authentik-server.authentik.svc.cluster.local
+          providers:
+          - !KeyOf provider-ldap
+          service_connection: !Find [authentik_outposts.kubernetesserviceconnection, [name, Local Kubernetes Cluster]]
+          type: ldap
+        conditions: []
+        identifiers:
+          name: LDAP
         permissions: []
         state: present
