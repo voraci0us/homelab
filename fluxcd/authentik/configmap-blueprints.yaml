@@ -25,12 +25,6 @@ data:
       attrs:
         name: JellyfinUsers
 
-    - model: authentik_core.group
-      identifiers:
-        name: jellyfin-friends
-      attrs:
-        name: jellyfin-friends
-
     # ----------------------------
     # Service Account
     # ----------------------------
