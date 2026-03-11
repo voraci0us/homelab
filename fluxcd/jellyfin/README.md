@@ -1,0 +1,1 @@
+I'm using an LDAP integration plugin for Jellyfin, with a corresponding Authentik LDAP Outpost. SSO is not desirable here since it is unlikely TV / mobile apps will be able to support the SSO flow.
