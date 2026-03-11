@@ -40,17 +40,52 @@ data:
             - !KeyOf role-ldapsearch
         state: present
 
+      - model: authentik_flows.flow
+        attrs:
+          authentication: none
+          background: ''
+          compatibility_mode: false
+          denied_action: message_continue
+          designation: authentication
+          layout: stacked
+          policy_engine_mode: any
+          slug: default-authentication-flow
+          title: Welcome to authentik!
+        conditions: []
+        identifiers:
+          name: Welcome to authentik!
+        id: default-authentication-flow
+        permissions: []
+        state: present
+
+      - model: authentik_flows.flow
+        attrs:
+          authentication: none
+          background: ''
+          compatibility_mode: false
+          denied_action: message_continue
+          designation: invalidation
+          layout: stacked
+          policy_engine_mode: any
+          slug: default-invalidation-flow
+          title: Default Invalidation Flow
+        conditions: []
+        identifiers:
+          name: Logout
+        id: default-invalidation-flow
+        permissions: []
+        state: present
+        
       - model: authentik_providers_ldap.ldapprovider
         attrs:
           authentication_flow: null
-          # default-authentication-flow
-          authorization_flow: 17855a67-0119-4142-9ea9-04cfa7ff431c
+          authorization_flow: !KeyOf default-authentication-flow
           base_dn: DC=ldap,DC=goauthentik,DC=io
           bind_mode: direct
           certificate: null
           gid_start_number: 4000
           # default-invalidation-flow
-          invalidation_flow: 67353588-6cdc-486f-ac86-1b241bb58f60
+          invalidation_flow: !KeyOf default-invalidation-flow
           mfa_support: false
           name: Provider for Jellyfin
           property_mappings: []
