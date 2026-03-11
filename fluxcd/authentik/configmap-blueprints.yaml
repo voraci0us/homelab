@@ -59,7 +59,9 @@ data:
         identifiers:
           name: Provider for Jellyfin
         id: provider-ldap
-        permissions: []
+        permissions:
+          - permission: search_full_directory
+            role: !KeyOf role-ldapsearch
         state: present
 
       - model: authentik_core.application
