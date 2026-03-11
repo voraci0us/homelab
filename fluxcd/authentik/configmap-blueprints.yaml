@@ -4,6 +4,14 @@ metadata:
   name: authentik-blueprints
   namespace: authentik
 data:
+  minimal-test.yaml: |
+    version: 1
+    entries:
+      - model: authentik_core.group
+        identifiers:
+          name: blueprint-test-20260311
+        attrs:
+          name: blueprint-test-20260311
   jellyfin.yaml: |
     version: 1
 
