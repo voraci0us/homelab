@@ -40,46 +40,11 @@ data:
             - !KeyOf role-ldapsearch
         state: present
 
-      - model: authentik_flows.flow
-        attrs:
-          authentication: none
-          background: ''
-          compatibility_mode: false
-          denied_action: message_continue
-          designation: authentication
-          layout: stacked
-          policy_engine_mode: any
-          slug: default-authentication-flow
-          title: Welcome to authentik!
-        conditions: []
-        identifiers:
-          name: Welcome to authentik!
-        id: default-authentication-flow
-        permissions: []
-        state: present
-
-      - model: authentik_flows.flow
-        attrs:
-          authentication: none
-          background: ''
-          compatibility_mode: false
-          denied_action: message_continue
-          designation: invalidation
-          layout: stacked
-          policy_engine_mode: any
-          slug: default-invalidation-flow
-          title: Default Invalidation Flow
-        conditions: []
-        identifiers:
-          name: Logout
-        id: default-invalidation-flow
-        permissions: []
-        state: present
-        
       - model: authentik_providers_ldap.ldapprovider
         attrs:
           authentication_flow: null
-          authorization_flow: !KeyOf default-authentication-flow
+          authorization_flow: !Find [authentik_flows.flow, [slug, default-authentication-flow]]
+          invalidation_flow: !Find [authentik_flows.flow, [slug, default-invalidation-flow]]
           base_dn: DC=ldap,DC=goauthentik,DC=io
           bind_mode: direct
           certificate: null
