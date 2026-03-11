@@ -55,5 +55,7 @@ data:
           slug: jellyfin
         conditions: []
         id: application-jellyfin
+        identifiers:
+          slug: jellyfin
         permissions: []
         state: present
