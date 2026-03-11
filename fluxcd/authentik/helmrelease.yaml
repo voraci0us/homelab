@@ -34,6 +34,7 @@ spec:
         enabled: false
       postgresql: 
         password: "env://POSTGRESQL_PASSWORD"
+      log_level: debug
 
     server:
       replicas: 1
