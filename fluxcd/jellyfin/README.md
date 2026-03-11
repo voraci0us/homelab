@@ -5,5 +5,5 @@ I don't have a way to manage this plugin declaratively at this point. I could ma
 So, here are the non-default settings for the LDAP plugin:  
 LDAP server: `ak-outpost-ldap.authentik.svc.cluster.local`  
 LDAP bind user: `cn=jellyfin-bind,ou=users,dc=ldap,dc=goauthentik,dc=io`  
-LDAP base DN: `dc=ldap,dc=goauthentik,dc=io`
+LDAP base DN: `dc=ldap,dc=goauthentik,dc=io`  
 LDAP search filter: `(memberOf=cn=JellyfinUsers,ou=groups,dc=ldap,dc=goauthentik,dc=io)`
