@@ -49,8 +49,6 @@ data:
           bind_mode: direct
           certificate: null
           gid_start_number: 4000
-          # default-invalidation-flow
-          invalidation_flow: !KeyOf default-invalidation-flow
           mfa_support: false
           name: Provider for Jellyfin
           property_mappings: []
