@@ -1,0 +1,83 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: authentik-blueprints
+  namespace: authentik
+data:
+  jellyfin.yaml: |
+    version: 1
+
+    metadata:
+      name: jellyfin-minimal
+      labels:
+        app: jellyfin
+        managed-by: blueprint
+
+    entries:
+
+    # ----------------------------
+    # Groups
+    # ----------------------------
+
+    - model: authentik_core.group
+      identifiers:
+        name: JellyfinUsers
+      attrs:
+        name: JellyfinUsers
+
+    - model: authentik_core.group
+      identifiers:
+        name: jellyfin-friends
+      attrs:
+        name: jellyfin-friends
+
+    # ----------------------------
+    # Service Account
+    # ----------------------------
+
+    - model: authentik_core.user
+      identifiers:
+        username: jellyfin-bind
+      attrs:
+        username: jellyfin-bind
+        name: Jellyfin LDAP Bind
+        is_active: true
+        type: service_account
+
+    # ----------------------------
+    # LDAP Provider
+    # ----------------------------
+
+    - model: authentik_providers_ldap.ldapprovider
+      identifiers:
+        name: Provider for Jellyfin
+      attrs:
+        name: Provider for Jellyfin
+        base_dn: dc=authentik,dc=local
+        bind_mode: cached
+        search_group: JellyfinUsers
+
+    # ----------------------------
+    # Application
+    # ----------------------------
+
+    - model: authentik_core.application
+      identifiers:
+        name: Jellyfin
+      attrs:
+        name: Jellyfin
+        slug: jellyfin
+        provider: !KeyOf Provider for Jellyfin
+
+    # ----------------------------
+    # LDAP Outpost
+    # ----------------------------
+
+    - model: authentik_outposts.outpost
+      identifiers:
+        name: LDAP
+      attrs:
+        name: LDAP
+        type: ldap
+        providers:
+          - !KeyOf Provider for Jellyfin

@@ -20,8 +20,8 @@ spec:
       retries: 3
   values:
     blueprints:
-    configMaps:
-      - authentik-blueprints
+      configMaps:
+        - authentik-blueprints
 
     global:
       envFrom:
