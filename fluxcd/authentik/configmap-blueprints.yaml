@@ -29,6 +29,15 @@ data:
         permissions: []
         state: present
 
+      - attrs:
+          name: jellyfin-bind
+          path: goauthentik.io/service-accounts
+          roles:
+          - !KeyOf role-ldapsearch
+          type: service_account
+          username: jellyfin-bind
+        model: authentik_core.user
+        state: present
 
   jellyfin.yaml: |
     version: 1
