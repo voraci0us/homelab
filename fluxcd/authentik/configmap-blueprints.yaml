@@ -20,6 +20,16 @@ data:
         permissions: []
         state: present
 
+      - attrs:
+          name: LDAP Search
+        conditions: []
+        identifiers:
+          name: role-ldapsearch
+        model: authentik_rbac.role
+        permissions: []
+        state: present
+
+
   jellyfin.yaml: |
     version: 1
 
