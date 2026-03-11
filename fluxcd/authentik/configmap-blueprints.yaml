@@ -7,7 +7,8 @@ data:
   minimal-test.yaml: |
     version: 1
     entries:
-      - attrs:
+      - model: authentik_core.group
+        attrs:
           attributes: {}
           is_superuser: false
           name: JellyfinUsers
@@ -16,103 +17,25 @@ data:
         conditions: []
         identifiers:
           name: group-jellyfinusers
-        model: authentik_core.group
         permissions: []
         state: present
 
-      - attrs:
-          name: LDAP Search
-        conditions: []
-        identifiers:
-          name: role-ldapsearch
+      - model: authentik_rbac.role
         id: role-ldapsearch
-        model: authentik_rbac.role
-        permissions: []
+        identifiers:
+          name: LDAP Search
+        attrs:
+          name: LDAP Search
         state: present
 
-      - attrs:
+      - model: authentik_core.user
+        identifiers:
+          username: jellyfin-bind
+        attrs:
+          username: jellyfin-bind
           name: jellyfin-bind
           path: goauthentik.io/service-accounts
-          roles:
-          - !KeyOf role-ldapsearch
           type: service_account
-          username: jellyfin-bind
-        model: authentik_core.user
+          roles:
+            - !KeyOf role-ldapsearch
         state: present
-
-  jellyfin.yaml: |
-    version: 1
-
-    metadata:
-      name: jellyfin-minimal
-      labels:
-        app: jellyfin
-        managed-by: blueprint
-
-    entries:
-
-    # ----------------------------
-    # Groups
-    # ----------------------------
-
-    - model: authentik_core.group
-      id: group-jellyfin-users
-      identifiers:
-        name: JellyfinUsers
-      attrs:
-        name: JellyfinUsers
-
-    # ----------------------------
-    # Service Account
-    # ----------------------------
-
-    - model: authentik_core.user
-      id: user-jellyfin-bind
-      identifiers:
-        username: jellyfin-bind
-      attrs:
-        username: jellyfin-bind
-        name: Jellyfin LDAP Bind
-        is_active: true
-        type: service_account
-
-    # ----------------------------
-    # LDAP Provider
-    # ----------------------------
-
-    - model: authentik_providers_ldap.ldapprovider
-      id: provider-jellyfin
-      identifiers:
-        name: Provider for Jellyfin
-      attrs:
-        name: Provider for Jellyfin
-        base_dn: dc=authentik,dc=local
-        bind_mode: cached
-        search_group: !KeyOf group-jellyfin-users
-
-    # ----------------------------
-    # Application
-    # ----------------------------
-
-    - model: authentik_core.application
-      id: app-jellyfin
-      identifiers:
-        slug: jellyfin
-      attrs:
-        name: Jellyfin
-        slug: jellyfin
-        provider: !KeyOf provider-jellyfin
-
-    # ----------------------------
-    # LDAP Outpost
-    # ----------------------------
-
-    - model: authentik_outposts.outpost
-      id: outpost-ldap
-      identifiers:
-        name: LDAP
-      attrs:
-        name: LDAP
-        type: ldap
-        providers:
-          - !KeyOf provider-jellyfin
