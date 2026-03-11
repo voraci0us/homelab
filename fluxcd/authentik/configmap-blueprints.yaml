@@ -20,41 +20,6 @@ data:
         permissions: []
         state: present
 
-      - attrs:
-          name: LDAP Search
-        conditions: []
-        identifiers:
-          name: role-ldapsearch
-        model: authentik_rbac.role
-        permissions: []
-        state: present
-
-      - attrs:
-          name: jellyfin-bind
-          path: goauthentik.io/service-accounts
-          roles:
-          - !KeyOf role-ldapsearch
-          type: service_account
-          username: jellyfin-bind
-        model: authentik_core.user
-        state: present
-
-      - attrs:
-          backchannel_providers: []
-          group: ''
-          meta_description: ''
-          meta_icon: ''
-          meta_launch_url: ''
-          meta_publisher: ''
-          name: Jellyfin
-          open_in_new_tab: false
-          policy_engine_mode: any
-          provider: 2
-          slug: jellyfin
-        conditions: []
-        model: authentik_core.application
-        permissions: []
-
   jellyfin.yaml: |
     version: 1
 
