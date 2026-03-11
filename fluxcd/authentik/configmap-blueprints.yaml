@@ -25,6 +25,7 @@ data:
         conditions: []
         identifiers:
           name: role-ldapsearch
+        id: role-ldapsearch
         model: authentik_rbac.role
         permissions: []
         state: present
