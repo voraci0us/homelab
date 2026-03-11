@@ -11,12 +11,11 @@ data:
         attrs:
           attributes: {}
           is_superuser: false
-          name: JellyfinUsers
           parents: []
           roles: []
         conditions: []
         identifiers:
-          name: group-jellyfinusers
+          name: JellyfinUsers
         permissions: []
         state: present
 
