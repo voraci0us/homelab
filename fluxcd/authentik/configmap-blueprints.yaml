@@ -40,6 +40,30 @@ data:
             - !KeyOf role-ldapsearch
         state: present
 
+      - model: authentik_providers_ldap.ldapprovider
+        attrs:
+          authentication_flow: null
+          # default-authentication-flow
+          authorization_flow: 17855a67-0119-4142-9ea9-04cfa7ff431c
+          base_dn: DC=ldap,DC=goauthentik,DC=io
+          bind_mode: direct
+          certificate: null
+          gid_start_number: 4000
+          # default-invalidation-flow
+          invalidation_flow: 67353588-6cdc-486f-ac86-1b241bb58f60
+          mfa_support: false
+          name: Provider for Jellyfin
+          property_mappings: []
+          search_mode: direct
+          tls_server_name: ''
+          uid_start_number: 2000
+        conditions: []
+        identifiers:
+          name: Provider for Jellyfin
+        id: provider-ldap
+        permissions: []
+        state: present
+
       - model: authentik_core.application
         attrs:
           backchannel_providers: []
@@ -51,7 +75,7 @@ data:
           name: Jellyfin
           open_in_new_tab: false
           policy_engine_mode: any
-          provider: 2
+          provider: !KeyOf provider-ldap
           slug: jellyfin
         conditions: []
         id: application-jellyfin
