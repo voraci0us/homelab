@@ -20,6 +20,7 @@ data:
     # ----------------------------
 
     - model: authentik_core.group
+      id: group-jellyfin-users
       identifiers:
         name: JellyfinUsers
       attrs:
@@ -30,6 +31,7 @@ data:
     # ----------------------------
 
     - model: authentik_core.user
+      id: user-jellyfin-bind
       identifiers:
         username: jellyfin-bind
       attrs:
@@ -43,35 +45,38 @@ data:
     # ----------------------------
 
     - model: authentik_providers_ldap.ldapprovider
+      id: provider-jellyfin
       identifiers:
         name: Provider for Jellyfin
       attrs:
         name: Provider for Jellyfin
         base_dn: dc=authentik,dc=local
         bind_mode: cached
-        search_group: JellyfinUsers
+        search_group: !KeyOf group-jellyfin-users
 
     # ----------------------------
     # Application
     # ----------------------------
 
     - model: authentik_core.application
+      id: app-jellyfin
       identifiers:
-        name: Jellyfin
+        slug: jellyfin
       attrs:
         name: Jellyfin
         slug: jellyfin
-        provider: !KeyOf Provider for Jellyfin
+        provider: !KeyOf provider-jellyfin
 
     # ----------------------------
     # LDAP Outpost
     # ----------------------------
 
     - model: authentik_outposts.outpost
+      id: outpost-ldap
       identifiers:
         name: LDAP
       attrs:
         name: LDAP
         type: ldap
         providers:
-          - !KeyOf Provider for Jellyfin
+          - !KeyOf provider-jellyfin
