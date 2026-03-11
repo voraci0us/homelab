@@ -39,3 +39,21 @@ data:
           roles:
             - !KeyOf role-ldapsearch
         state: present
+
+      - model: authentik_core.application
+        attrs:
+          backchannel_providers: []
+          group: ''
+          meta_description: ''
+          meta_icon: ''
+          meta_launch_url: ''
+          meta_publisher: ''
+          name: Jellyfin
+          open_in_new_tab: false
+          policy_engine_mode: any
+          provider: 2
+          slug: jellyfin
+        conditions: []
+        id: application-jellyfin
+        permissions: []
+        state: present
