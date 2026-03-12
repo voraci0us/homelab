@@ -20,9 +20,11 @@ spec:
           - name: cdrom
             cdrom:
               bus: sata
+            bootOrder: 1
           - name: rootdisk
             disk:
               bus: virtio
+            bootOrder: 2
       volumes:
       - name: cdrom
         dataVolume:
