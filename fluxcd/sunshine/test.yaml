@@ -1,0 +1,16 @@
+apiVersion: cdi.kubevirt.io/v1beta1
+kind: DataVolume
+metadata:
+  name: cirros
+  namespace: default
+spec:
+  source:
+    http:
+      url: http://vm-image-server.vm-images.svc/cirros-0.6.2-x86_64-disk.img
+  pvc:
+    accessModes:
+      - ReadWriteOnce
+    storageClassName: zfs-local-zvol
+    resources:
+      requests:
+        storage: 1Gi

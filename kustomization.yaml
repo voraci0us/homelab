@@ -7,3 +7,4 @@ resources:
   - ./fluxcd/flux-system
   - ./fluxcd/jellyfin
   - ./fluxcd/kubevirt
+  - ./fluxcd/sunshine
