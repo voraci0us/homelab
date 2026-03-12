@@ -2,7 +2,6 @@ apiVersion: cdi.kubevirt.io/v1beta1
 kind: DataVolume
 metadata:
   name: windows-iso
-  namespace: vm-images
 spec:
   source:
     http:
@@ -19,7 +18,6 @@ apiVersion: cdi.kubevirt.io/v1beta1
 kind: DataVolume
 metadata:
   name: virtio-iso
-  namespace: vm-images
 spec:
   source:
     http:
@@ -30,4 +28,20 @@ spec:
     resources:
       requests:
         storage: 1Gi
+    storageClassName: zfs-local-zvol
+---
+apiVersion: cdi.kubevirt.io/v1beta1
+kind: DataVolume
+metadata:
+  name: alpine-iso
+spec:
+  source:
+    http:
+      url: http://vm-image-server.cdi.svc/alpine-standard-3.20.3-x86_64.iso
+  pvc:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 300Mi
     storageClassName: zfs-local-zvol
