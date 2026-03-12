@@ -11,6 +11,7 @@ spec:
     accessModes:
       - ReadWriteOnce
     storageClassName: zfs-local-zvol
+    volumeMode: Block
     resources:
       requests:
         storage: 1Gi
