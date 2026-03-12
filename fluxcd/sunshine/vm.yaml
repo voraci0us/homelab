@@ -1,0 +1,64 @@
+apiVersion: cdi.kubevirt.io/v1beta1
+kind: DataVolume
+metadata:
+  name: windows-rootdisk
+spec:
+  source:
+    blank: {}
+  pvc:
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 200Gi
+    storageClassName: zfs-local-zvol
+---
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+metadata:
+  name: windows
+spec:
+  running: true
+  template:
+    metadata:
+      labels:
+        kubevirt.io/domain: windows
+    spec:
+      domain:
+        machine:
+          type: q35
+        cpu:
+          cores: 4
+        resources:
+          requests:
+            memory: 8Gi
+        devices:
+          disks:
+            - name: windows-iso
+              cdrom:
+                bus: sata
+              bootOrder: 1
+            - name: virtio-iso
+              cdrom:
+                bus: sata
+              bootOrder: 2
+            - name: rootdisk
+              disk:
+                bus: virtio
+              bootOrder: 3
+          interfaces:
+            - name: default
+              masquerade: {}
+      networks:
+        - name: default
+          pod: {}
+      volumes:
+        - name: windows-iso
+          dataVolume:
+            name: windows-iso
+        - name: virtio-iso
+          dataVolume:
+            name: virtio-iso
+        - name: rootdisk
+          dataVolume:
+            name: windows-rootdisk

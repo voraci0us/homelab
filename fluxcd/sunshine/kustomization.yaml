@@ -6,3 +6,4 @@ namespace: sunshine
 resources:
   - isos.yaml
   - namespace.yaml
+  - vm.yaml
