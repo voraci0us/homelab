@@ -4,5 +4,6 @@ kind: Kustomization
 namespace: sunshine
 
 resources:
+  - alpine-vm.yaml
   - namespace.yaml
   - test.yaml

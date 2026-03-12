@@ -1,0 +1,64 @@
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+metadata:
+  name: alpine-test
+spec:
+  running: true
+  template:
+    metadata:
+      labels:
+        kubevirt.io/domain: alpine-test
+    spec:
+      domain:
+        cpu:
+          cores: 1
+        resources:
+          requests:
+            memory: 512Mi
+        devices:
+          disks:
+          - name: cdrom
+            cdrom:
+              bus: sata
+          - name: rootdisk
+            disk:
+              bus: virtio
+      volumes:
+      - name: cdrom
+        dataVolume:
+          name: alpine-iso
+      - name: rootdisk
+        dataVolume:
+          name: alpine-disk
+---
+apiVersion: cdi.kubevirt.io/v1beta1
+kind: DataVolume
+metadata:
+  name: alpine-iso
+spec:
+  source:
+    http:
+      url: http://vm-image-server.cdi.svc/alpine-standard-3.20.3-x86_64.iso
+  pvc:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 300Mi
+    storageClassName: zfs-local-zvol
+---
+apiVersion: cdi.kubevirt.io/v1beta1
+kind: DataVolume
+metadata:
+  name: alpine-disk
+  namespace: sunshine
+spec:
+  source:
+    blank: {}
+  pvc:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 4Gi
+    storageClassName: zfs-local-zvol
