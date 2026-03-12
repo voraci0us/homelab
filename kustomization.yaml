@@ -8,4 +8,3 @@ resources:
   - ./fluxcd/jellyfin
   - ./fluxcd/kubevirt
   - ./fluxcd/sunshine
-  - ./fluxcd/vm-images
