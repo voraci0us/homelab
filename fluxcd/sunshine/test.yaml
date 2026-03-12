@@ -6,7 +6,7 @@ metadata:
 spec:
   source:
     http:
-      url: http://vm-image-server.vm-images.svc/cirros-0.6.2-x86_64-disk.img
+      url: http://vm-image-server.cdi.svc/cirros-0.6.2-x86_64-disk.img
   pvc:
     accessModes:
       - ReadWriteOnce
