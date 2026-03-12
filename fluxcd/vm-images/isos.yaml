@@ -1,0 +1,33 @@
+apiVersion: cdi.kubevirt.io/v1beta1
+kind: DataVolume
+metadata:
+  name: windows-iso
+  namespace: vm-images
+spec:
+  source:
+    http:
+      url: http://vm-image-server.cdi.svc/en-us_windows_11_consumer_editions_version_25h2_updated_feb_2026_x64_dvd_c975b6ac.iso
+  pvc:
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 10Gi
+    storageClassName: zfs-local-zvol
+---
+apiVersion: cdi.kubevirt.io/v1beta1
+kind: DataVolume
+metadata:
+  name: virtio-iso
+  namespace: vm-images
+spec:
+  source:
+    http:
+      url: https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso
+  pvc:
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
+    storageClassName: zfs-local-zvol
