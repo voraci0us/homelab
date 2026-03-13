@@ -49,6 +49,9 @@ spec:
           interfaces:
             - name: default
               masquerade: {}
+          gpus:
+            - name: gpu0
+              deviceName: devices.kubevirt.io/amd-igpu
       networks:
         - name: default
           pod: {}
