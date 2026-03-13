@@ -7,3 +7,7 @@ spec:
   configuration:
     developerConfiguration:
       useEmulation: false
+    permittedHostDevices:
+      pciHostDevices:
+        - pciVendorSelector: "1002:150e"
+          resourceName: "devices.kubevirt.io/amd-igpu"
