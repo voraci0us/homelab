@@ -47,6 +47,14 @@ spec:
               disk:
                 bus: virtio
               bootOrder: 3
+          features:
+            kvm:
+              hidden: true
+            hyperv:
+              relaxed: true
+              vapic: true
+              spinlocks:
+                spinlocks: 8191
           interfaces:
             - name: default
               masquerade: {}
