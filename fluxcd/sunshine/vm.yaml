@@ -47,20 +47,20 @@ spec:
               disk:
                 bus: virtio
               bootOrder: 3
-          features:
-            kvm:
-              hidden: true
-            hyperv:
-              relaxed: true
-              vapic: true
-              spinlocks:
-                spinlocks: 8191
           interfaces:
             - name: default
               masquerade: {}
           gpus:
             - name: gpu0
               deviceName: devices.kubevirt.io/amd-igpu
+        features:
+          kvm:
+            hidden: true
+          hyperv:
+            relaxed: true
+            vapic: true
+            spinlocks:
+              spinlocks: 8191
       networks:
         - name: default
           pod: {}
