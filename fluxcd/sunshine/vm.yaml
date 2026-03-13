@@ -34,7 +34,7 @@ spec:
             memory: 8Gi
         devices:
           disks:
-            - name: windows-iso
+            - name: windows-10-iso
               cdrom:
                 bus: sata
               bootOrder: 1
@@ -53,9 +53,9 @@ spec:
         - name: default
           pod: {}
       volumes:
-        - name: windows-iso
+        - name: windows-10-iso
           dataVolume:
-            name: windows-iso
+            name: windows-10-iso
         - name: virtio-iso
           dataVolume:
             name: virtio-iso
