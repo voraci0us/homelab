@@ -57,6 +57,9 @@ spec:
           gpus:
             - name: gpu0
               deviceName: devices.kubevirt.io/amd-igpu
+          hostDevices:
+            - name: gpu-audio
+              deviceName: devices.kubevirt.io/amd-igpu-audio
         features:
           kvm:
             hidden: true
