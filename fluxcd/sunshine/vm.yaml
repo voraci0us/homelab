@@ -38,6 +38,7 @@ spec:
           requests:
             memory: 8Gi
         devices:
+          autoattachGraphicsDevice: false
           disks:
             - name: windows-10-iso
               cdrom:
