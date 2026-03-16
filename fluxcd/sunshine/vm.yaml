@@ -25,6 +25,10 @@ spec:
         kubevirt.io/domain: windows
     spec:
       domain:
+        firmware:
+          bootloader:
+            efi:
+              secureBoot: false
         machine:
           type: q35
         cpu:
