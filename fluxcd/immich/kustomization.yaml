@@ -4,3 +4,6 @@ resources:
   - namespace.yaml
   - database.yaml
   - pvc-library.yaml
+  - helmrepository.yaml
+  - values-configmap.yaml
+  - helmrelease.yaml
