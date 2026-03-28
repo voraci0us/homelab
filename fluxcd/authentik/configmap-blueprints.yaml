@@ -128,3 +128,32 @@ data:
           policy_engine_mode: any
           meta_launch_url: "http://linus:30283/auth/login?autoLaunch=1"
         state: present
+
+      - model: authentik_core.group
+        id: group-immich-users
+        identifiers:
+          name: ImmichUsers
+        attrs:
+          name: ImmichUsers
+        state: present
+
+      - model: authentik_policies_group_membership.groupmembershippolicy
+        id: policy-immich-access
+        identifiers:
+          name: Immich Access
+        attrs:
+          name: Immich Access
+          group: !KeyOf group-immich-users
+        state: present
+
+      - model: authentik_policies.policybinding
+        identifiers:
+          target: !KeyOf application-immich
+          policy: !KeyOf policy-immich-access
+          order: 0
+        attrs:
+          target: !KeyOf application-immich
+          policy: !KeyOf policy-immich-access
+          order: 0
+          enabled: true
+        state: present
