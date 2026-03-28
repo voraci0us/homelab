@@ -32,6 +32,15 @@ data:
                     key: dbname
 
     immich:
+      configuration:
+        oauth:
+          enabled: true
+          clientId: immich
+          issuerUrl: http://linus:30900/application/o/immich/.well-known/openid-configuration
+          scope: openid email profile
+          autoRegister: true
+          autoLaunch: false
+          buttonText: Login with Authentik
       persistence:
         library:
           existingClaim: immich-library
