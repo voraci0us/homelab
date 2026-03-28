@@ -5,6 +5,7 @@ resources:
   - ./fluxcd/cdi
   - ./fluxcd/cnpg
   - ./fluxcd/democratic-csi
+  - ./fluxcd/immich
   - ./fluxcd/flux-system
   - ./fluxcd/jellyfin
   - ./fluxcd/kubevirt
