@@ -40,6 +40,9 @@ spec:
       replicas: 1
       ingress:
         enabled: false
+      service:
+        type: NodePort
+        nodePortHttp: 30900
 
     worker:
       replicas: 1
