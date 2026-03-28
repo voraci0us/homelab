@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - ./fluxcd/authentik
   - ./fluxcd/cdi
+  - ./fluxcd/cnpg
   - ./fluxcd/democratic-csi
   - ./fluxcd/flux-system
   - ./fluxcd/jellyfin
