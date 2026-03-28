@@ -36,5 +36,13 @@ data:
         library:
           existingClaim: immich-library
 
+    server:
+      service:
+        main:
+          type: NodePort
+          ports:
+            http:
+              nodePort: 30283
+
     valkey:
       enabled: true
