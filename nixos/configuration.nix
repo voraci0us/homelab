@@ -11,9 +11,10 @@
     ];
 
   # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.useOSProber = true;
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.supportedFilesystems = [ "zfs" ];
+  boot.zfs.forceImportAll = false;
 
   networking.hostName = "linus"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -24,6 +25,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.hostId = "deadbeef";
 
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
@@ -67,6 +69,7 @@
   #  wget
      kubernetes-helm
      gnupg
+     sqlite
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -100,7 +103,7 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
