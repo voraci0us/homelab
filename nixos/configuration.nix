@@ -14,7 +14,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = [ "zfs" ];
-  boot.zfs.forceImportAll = true;
 
   networking.hostName = "linus"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -118,7 +117,6 @@
 
   systemd.services.zfs-load-keys = {
     description = "Load ZFS encryption keys and mount datasets";
-    after = [ "zfs-import-tank.service" "zfs-import-fast.service" ];
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "oneshot";
@@ -131,12 +129,14 @@
           ${pkgs.zfs}/bin/zfs load-key -L "file://$keyfile" "$ds"
         fi
       }
-    
+
+      ${pkgs.zfs}/bin/zpool import -a
+
       load_key tank/media  /root/keys/zfs-tank.key
       load_key fast/vm     /root/keys/zfs-fast.key
       load_key fast/k8s    /root/keys/zfs-fast.key
       load_key fast/data   /root/keys/zfs-fast.key
-    
+
       ${pkgs.zfs}/bin/zfs mount -a || true
     '';
   };
