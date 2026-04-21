@@ -115,4 +115,29 @@
   system.stateVersion = "25.11"; # Did you read the comment?
 
   security.sudo.wheelNeedsPassword = false;
+
+  systemd.services.zfs-load-keys = {
+    description = "Load ZFS encryption keys and mount datasets";
+    after = [ "zfs-import-tank.service" "zfs-import-fast.service" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      load_key() {
+        local ds=$1 keyfile=$2
+        if [ "$(${pkgs.zfs}/bin/zfs get -H -o value keystatus "$ds")" != "available" ]; then
+          ${pkgs.zfs}/bin/zfs load-key -L "file://$keyfile" "$ds"
+        fi
+      }
+    
+      load_key tank/media  /root/keys/zfs-tank.key
+      load_key fast/vm     /root/keys/zfs-fast.key
+      load_key fast/k8s    /root/keys/zfs-fast.key
+      load_key fast/data   /root/keys/zfs-fast.key
+    
+      ${pkgs.zfs}/bin/zfs mount -a || true
+    '';
+  };
 }
