@@ -29,14 +29,14 @@ spec:
               auth:
                 type: basic
                 username: "3145678"
-                password: ENC[AES256_GCM,data:pPLoa3F22sesyCONQDTXlKIkzR3NEanxIM30wJXHN8s7H41lqB4b9U50meTTSurg/MBa2/5xIb7R9I1kq5AaEOf0uJbGPH7AszW3T6pL6rnQTDz7yoKw5aJZtRXDSmGeS5qWlzPtCldp5Xb0n+6SIsT1mYyEyRgXEenEUxDxDfOevmvAJP2nUwTu8oOGTW5sQVgSTUm8WiYB25k3gshfLg==,iv:FlDapA03ym2ZLL9MAVmqLYO7FVUziCLBu94CGX9NE0s=,tag:f9FSAapnZkK055P6zOu0qQ==,type:str]
+                password: ENC[AES256_GCM,data:KmHcNEFRGvD4zCcgKrG2V0FrYIuVkoy3NY2fWpdt+621j1TIQiUdH0T/42a4YMYQ/xvYp+6RERjHP+hhtfIuiH7NavonxjpAIyTCe83EGtBjd4tORx9vlM+PQshqsQMwxR86Nf1w8gujnzv0eVHgWJsXXNLJD6J6EE9GypaBVvQjbzl4RynZDwiFgJ9aPO+npVpOf53lWbjWajIoqiMlUw==,iv:EzkdAJGB2w+ITY2DDrXLutCjWA6akdqLAlamKi8ILZA=,tag:Aru/1RwUMWEIKl3Fy2SCYQ==,type:str]
             - name: grafana-cloud-logs
               type: loki
               url: https://logs-prod-021.grafana.net./loki/api/v1/push
               auth:
                 type: basic
                 username: "1568514"
-                password: ENC[AES256_GCM,data:owZJcAMPQYdw+MeQZGdQgQH6YPs17EP+EwKjEQtNBg7jvgwamaiUW25tx0NQPoDNZcF1Hb7lNfdKxlYzawne5rUTpBFS6v8tvpen+pK82iUfCrVz1mEwLbeDjmFObYK6GSOupHusfNqTvdW7XPLiWa4Hi0W/F4D6/8Pnoxvjnkzw3cJBN8wB6aOaQe9KRvQqO0xsNwlcNXIZXyh3TKn7+w==,iv:4AQfQ7zRJhLMZkYZ1Q28nzdG1Tl1hMK7zZihDXt7hb8=,tag:trm2SmX3DCFcin3qRF8bHg==,type:str]
+                password: ENC[AES256_GCM,data:MVROV3qYJve0E5CSQn6JgZGpUqzzk5T3zz8vhtev8r6vvFZugpvrq/CkUtEioVjXK5S8OC8Zx3igjPZmIhZyD7/CqAZtUgkCcRVrsEotwkji16fbAUmgJ20c6iVoahEHiiKeZRWdUomwSJf0g2id+YohguXMUfdD5+Q2B7J7NSUxw0tFi+QtjyIe3MVu0sNeSgooZdMZEeiJZGtNvIzQAQ==,iv:XLXWZwX08G0U9hQD7xcPdjmevuOMcAOZRKFUCsW9FBM=,tag:mP2KocaMu7IRW6YZs+D2AQ==,type:str]
             - name: gc-otlp-endpoint
               type: otlp
               url: https://otlp-gateway-prod-us-west-0.grafana.net./otlp
@@ -44,34 +44,17 @@ spec:
               auth:
                 type: basic
                 username: "1610725"
-                password: ENC[AES256_GCM,data:GRCoQq3au+JCCZmGENAf9Ew6fZkGCNZXtDw4WjxZoluzSwOdttFoMW0YyP/hhSBpPI/8OXqvCw7bzvYoSjwaLIAmIJsz4H4Y3cXIbWBG+dm0qHmsFzRERQg89t/dDFc1nNPFsPICiWYq7yioU1shI+DnVqdMkgtgotlKBjwuaxXb+bxmjrsBeXdTf526f3m7QbZfMH7yp/jJ7GCofH4rSw==,iv:CTQLpu0xeVfTGrss5JOfrXUhN+WpBCwjWDFNNWKhqOI=,tag:joRAMg8sLeFaD0LEq55/xA==,type:str]
+                password: ENC[AES256_GCM,data:3IqHCbq6iHGc7y4pfdv9E6+Je+Tf1YGPRDO2A99QBu544PQNLujZkht8uXPYPidYD2zbrDYsvBZxYXdD8W52DcLBJZfimpOWcO3ubOXW89QZntmVdVvRTxYEs93hhyiG+FzmclIJFwyKi+BOoB4GKi4+74XZNVKz7scMLoP9Ww8Nzg1vw8CdcXeXkriQ/aeo7Y0LvGCb4c8pNjXIgAliXw==,iv:CagAla7I5gV3Eu0+zdOPAqsfm271ED4xBl8f+ZZpkdA=,tag:ghMeQmKL7vdAjchkEZIhew==,type:str]
               metrics:
                 enabled: true
               logs:
                 enabled: true
               traces:
-                enabled: true
-            - name: grafana-cloud-profiles
-              type: pyroscope
-              url: https://profiles-prod-008.grafana.net.:443
-              auth:
-                type: basic
-                username: "1610725"
-                password: ENC[AES256_GCM,data:lzpbpTLO41SgeMjbdUN05Rlc7BbUUy6LTIU3Jy5UPlb/TWwtp7Ff8aZvXHhpGxxiy0KJGLe4EYL38e5O/8ZCPTeD/z0WizdHJh1tQtBLvKsPLj0QixWsl6C7pKu9aSllhPSaZG3SpXgF8wMGAYtW2GYtXKvLfyn5K8VpPTrhF/c1hQ2JNkYpJie+LZ5wT9AfiE/lLFfig7kvh511R6sdIw==,iv:mMb+IxQ+4N7H+T/6TcxJb/enAqbhVIWS7uHnfr49Cms=,tag:77QEjL1GpKO7Ol0kQnodaw==,type:str]
+                enabled: false
         clusterMetrics:
             enabled: true
-            opencost:
-                enabled: true
-                metricsSource: grafana-cloud-metrics
-                opencost:
-                    exporter:
-                        defaultClusterId: linus
-                    prometheus:
-                        existingSecretName: grafana-cloud-metrics-grafana-k8s-monitoring
-                        external:
-                            url: https://prometheus-prod-67-prod-us-west-0.grafana.net./api/prom
             kepler:
-                enabled: true
+                enabled: false
         annotationAutodiscovery:
             enabled: true
         clusterEvents:
@@ -94,11 +77,9 @@ spec:
                     enabled: true
                     port: 9411
         autoInstrumentation:
-            enabled: true
-            beyla:
-                deliverTracesToApplicationObservability: false
+            enabled: false
         profiling:
-            enabled: true
+            enabled: false
         alloy-metrics:
             enabled: true
             alloy:
@@ -126,7 +107,7 @@ spec:
                 auth:
                     type: basic
                     username: "1610725"
-                    password: ENC[AES256_GCM,data:PxrS4ORVWpIBQbvB3IBQwP8PU+0H3z+KFqSgK0xkB+e2E755lygmL3fsepMyPhsn9yvMTdS47rJgHgPvMyJEfmPmXzak5/0+TpYC95mLI3TCQ84KOV9itMvvsTxbbX4K70KjNXLzH1ymvbsFOA3u21ch8/75Y9VcOkJPsnVXonUQwkFyDje2MBoAD3vZ8fZI/MXBxdyoZvR1xkTLLTEGRg==,iv:fp9aeEAWdg2hAyBOpLuYV1EIEvM91QN6P4IMBPQXLls=,tag:j5OFdtDFbHzk3UHpOLPSFg==,type:str]
+                    password: ENC[AES256_GCM,data:cquWeLjNZw1beIXKEgArEpGcXiuTYKe7o/fJ7W3yFyRiPj3DSPP8lhD1pGXD0+WuDObK4SAJjuDYbc5z83eIDJvlJeRVmTphTbzU3+AaQ5Z48lvLIpz6QFDK9KLMwu2mmDTztMS/va33k7sA/BzmIDGMdfNnAFRSL0ll3LssyhG/strsdaIcOlPxg3bCN88xk1R+JxShnB+WlhGr3CGsKA==,iv:gg7s6yUWpCn1S7J+UQljcG6tuvFLaPZvTmfdb0f9phs=,tag:WpOUsXetlsrTGVF8xsvAzA==,type:str]
         alloy-singleton:
             enabled: true
             alloy:
@@ -154,7 +135,7 @@ spec:
                 auth:
                     type: basic
                     username: "1610725"
-                    password: ENC[AES256_GCM,data:c1QH0RcOdxhD2/dRU2TfTY72L1FszcRlEUZU72tTKDUvis0Z2ZgavLLBZn/sH5qP0j9li7Ma4MPAwskQuaVtWg1/IbITVA0twTB/Pp2xU4M5CwGdn863UqgLd/g0SqVokchNHBSMEYtSwHvjm2mh5HHUzKTHAGrEX6jP3v1+dKD7OGxG7R0mN2mfiMeXpCZo3F/1qjZxHwHtLenu4SaEcQ==,iv:LID1HlvrQ3QWUccu2HvQPHWxzRZswXS2QOzYjw0u0WY=,tag:/3ePJQxVnjxHjtIvVRp7aA==,type:str]
+                    password: ENC[AES256_GCM,data:pHmilSk+DCUe5H3xZmHczUdEQgB9OyhlafxG6CV0vRxeNyZWWP8Park5M78gLt2FKcxAjvV67/PSDZeX+OQOAKnearEzlY/rlQaNqgpGHpSAL2C3CG7fwe60EnIMerUrW9JrDN55+/xVWaG1yh5UGPkAzOyXgRSPeyFZcToIupxenqu21ti+F+Gnv0eFabnKYXdZoUz9GW/D37IzIWO5Dg==,iv:34+Q7J9aDMiVMRePktCzW4kI+GGvDU7TicZ2ee7HZ70=,tag:W4xakJQ7AKr6Xi+WxGv0Hg==,type:str]
         alloy-logs:
             enabled: true
             alloy:
@@ -186,7 +167,7 @@ spec:
                 auth:
                     type: basic
                     username: "1610725"
-                    password: ENC[AES256_GCM,data:UcF8Fv1sV/hrgpRU9Krv/TafD8HapR5TwqTn7vFyIm0UPRKCQCnoQ3mIjRbciN6m0QnYupkSyBOEu8owl0TxkuCv+xWPXVqXMh74RPDFm3hHl6zsb54IrJrGltgDdoePXknd57sWemTjFSqodcUKqQr/P4eBaQrQmfjgdP82WnmkcowKawxo4QPdAQQkGkCL4dXUFPi8qPzcRedtHwdPgg==,iv:Vk9JzKKuIOR+uSna0hRyLmMb5G+Ye6S9o/3xW8PXWAQ=,tag:5Oh2DP3J55MMOgQp3eTnQA==,type:str]
+                    password: ENC[AES256_GCM,data:8jwk69ZRz6d2k//RWoNLRZG+cuHwukkTu0LehnH18ywhMXmsUY1sYbUZRSzrRxEDBsCuzJb/r/g9qvhsH8TVt576fArXnZHA0G+1bnwQaRU1Tcll/hWRcWyJ3oMTl/FPZ67+K6U89J7xryQsjlIgOpUmSiBeGOGDobXRp1zmC/cVuBfM0IblKMv1KmCwP/THoK4+JDPY31ItLstFSSBuRQ==,iv:liiu/GWtmUQhy6r7/0cnBZlOP7oYtp93ZKqehjS8QRo=,tag:X8USO8jbtww5wyCHDMkH6w==,type:str]
         alloy-receiver:
             enabled: true
             alloy:
@@ -231,61 +212,29 @@ spec:
                 auth:
                     type: basic
                     username: "1610725"
-                    password: ENC[AES256_GCM,data:Y0W5P1CSD0DLSjgts7nr8z3/2eI/TfvAtWZ06lFB60bI7w5cmL4t1UjNYHNBWfg1zeLLgcnfx/+Pb4gS1okRNN26KHzCfUGuD6mdILsuvUPoiW3gBMcFEonPbv50vuD+RXMUllZntq+cCf/r6K46QIKmUzJqf54T8Je2/J1R7hk9vpg3mHPtU2lUVG0grk28Z60nqGeAH5CLb3A2rHZ+tw==,iv:uucrO/hVXW91aM1VhW9f9i43Hn0uh7ANhe2wilpcdkk=,tag:O+odo4CPDIQ5NjuhgY6IRQ==,type:str]
-        alloy-profiles:
-            enabled: true
-            alloy:
-                extraEnv:
-                    - name: GCLOUD_RW_API_KEY
-                      valueFrom:
-                        secretKeyRef:
-                            name: alloy-profiles-remote-cfg-grafana-k8s-monitoring
-                            key: password
-                    - name: CLUSTER_NAME
-                      value: linus
-                    - name: NAMESPACE
-                      valueFrom:
-                        fieldRef:
-                            fieldPath: metadata.namespace
-                    - name: POD_NAME
-                      valueFrom:
-                        fieldRef:
-                            fieldPath: metadata.name
-                    - name: NODE_NAME
-                      valueFrom:
-                        fieldRef:
-                            fieldPath: spec.nodeName
-                    - name: GCLOUD_FM_COLLECTOR_ID
-                      value: grafana-k8s-monitoring-$(CLUSTER_NAME)-$(NAMESPACE)-alloy-profiles-$(NODE_NAME)
-            remoteConfig:
-                enabled: true
-                url: https://fleet-management-prod-014.grafana.net
-                auth:
-                    type: basic
-                    username: "1610725"
-                    password: ENC[AES256_GCM,data:wjFQvZBtBLupPCHQ6PYwtJeP9ifIalB4zWntv6HVdpRf60ABQyYeM8NEg5QFntAsY8mXJB/z5Azi+D0K7ze+Aw2Hm5VHNc9DTtXtIX0buz/ocZbt3Bym8etDoNMkky54RRQkLQ6tZlnBenj3G9rYwBH6FNysYLoNQz/vAXBzd0UlzJKKY6uG698WKrIHYRPolUQee6KoksV1dcXRaz3bUw==,iv:3z+JvDPSSKPvEqKPotnHFDnWglt0jUVDXPHHQ6BE+CY=,tag:/UkKB+RVDKcrNbbzmGPExg==,type:str]
+                    password: ENC[AES256_GCM,data:eqI6Ayb0qVYnMU/a9DgTbDWiFbbKutXYJdMlS9vmVlRLRFf6BVj4j53DZqT1vldPdnPQ7/Ojwce/KksiqdSVdSq/k2poxvbLiJCZEAhciZhirmIOm2gjHJnV4buhVW8XPUYJuwZb3fdwEXbjGKFjW5rHr3UjMGGrISJkZjXGyeVy5qJaft4ArhC7cj68ory00JbBDvw4TMBGazptJWU5yQ==,iv:XeO2YXB3IyE9/HfDUEG0RzPljdyHUWqtQctuYUPzml8=,tag:kCcOs5fSYhPUfaTty6Pogw==,type:str]
 sops:
-    lastmodified: "2026-04-27T01:39:02Z"
-    mac: ENC[AES256_GCM,data:VhXn//eHupPsU0A2sMI21NjUpJ/edQ8ZIgb3aeMhQPPrzJ9YCykCqHm2UvDv2cn0gblKFmFUkFmBp/u3LP7nuKFrQqHLBVBj3rV8k4pRQb/lZZN0mn2S4TIDwWaONNxe9N6jU4eOqTQ7Ef5eGkGeCtfOOcydvlE6enlR1P7kUZY=,iv:tKCSVr1dfBiIBa9/0ngZvxnPxwjB1AAA9DPmL7OVaZI=,tag:glqCmALxvfdDsaE8sQ1SdQ==,type:str]
+    lastmodified: "2026-04-27T14:09:37Z"
+    mac: ENC[AES256_GCM,data:/IwgbB8F3o6kPmszd5TuG0PYsrF1fZZf+bJI93H17i0QScvodY97BRVKJWsv9X6i5yT/6ZLLxgIvUOT48ua4UJz5D+Vuee3HYZHNK4S4+fQ8TtCpKDmWNpwawLcI+TLFqAnXNPu5W0fhAnxLrw6q1AZ21ZdOvu6inRTZJRUJCCY=,iv:wOI5IFcZjMQTTjB0P/W8o659W7Fnfpg31Xqn7XREEew=,tag:N6GuS7K4nRUpMo2NCLTBCw==,type:str]
     pgp:
-        - created_at: "2026-04-27T01:39:02Z"
+        - created_at: "2026-04-27T14:09:37Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA5TdUnsBXCsAARAAtnYqnnwIZ6RNijTKj3wXZT4n8wXoRJVGIfQKH4bxyPvG
-            K4nrCjub3nboNznqvIs5Ms5QNQQu2K9s3vIuQAZfHpDgNSTPkL0WswuHNHMr1Sis
-            b5GMCjfHG3TowwZDrGyrnoHi54SCg0JnEYenm6yqOPim5EGOLzb5qeam6ojAJV3h
-            MC/yrT0R40Rr5/Nj/9F2F8c0zAg/qUbTKVFtlRNZKvBfXnuw2P7QKH0t2OIu/1DK
-            Iy9I7LOunpT/Wna3pv5sJQgcDR5UgWLAXCbaE1psksz8VfEB8E+YVwxQkmeNLHmG
-            226q4YKLKIwdpHhSCBTuuylNEAtWFv4dEDnhVd9HlP25EBYWmVWYgBzm3Se23XiK
-            d04nX/tRyhEbSRDn3Lx8Qkqxen4weA8MGPvU4lmUB9REThVYbL5HAX6QmJDoy+7j
-            H82Aoebn4Ks8HXUfK5XJoM75V+6KHGng1jYOZms7K2WWOz/SPPOPjIVOSzrHTUhb
-            85pnmMnXWewhEwU+8wL66ETa21oq3JOZZneciHb13Fndwi0JTnxfPitpxRqLyhJV
-            ww5j3cf4uPreYp/SdaGr9vmwZw819zYrS++euO6nI12UAQTx+w/xyBf/kTwfp3ZM
-            gPi8nKMxUvCThIFrA7noy9yNwMUmEqK4mpZYeA3rqCPKCPHm9wQve6Jyd6M5w+DS
-            XgGagb4jEOJhPTpKYyOPMuY7PUQiucmUy1j5MEKPMlKSxYYW9yHmVMhR68Gdv44u
-            NAT10PL65RGX8f5GTbfglMbpHq2G488EjoVv//p6ZTEExgX6Qjyx5WWGl1CyKSU=
-            =N52t
+            hQIMA5TdUnsBXCsAARAAtuuXhS9b4VMpuvSoZwIP8hOzcJIPT19RfrzHP2YZoSN+
+            r2uvA82/yPFqn5CtRNxQDVcrk3MnwrW1GXQvUspP+ve2aYwFWUYrclREE6/ZnNRb
+            fE2BDxdYpNpHXM4bVTo66GYzhhVjm5VKCSecCyhtNztFyVRMyLO6rcczr0CsWlqg
+            98vOSuqRx2g1M7T11ZmIUR0NvTSRH9GfnTW9scLhq98KO/gMjAsaXxAlIQ02VqQf
+            zcl0epLn6Mqgx4YTQJ8wCyza4tSt/cgYO96mLjb/gtSTK/ppM+9cWSa/fATi5tfK
+            SlUSRWERMtbiOEdchHujd4c5Iz8ADs/9yPp/jsq2EQQ+79y3/670Zbf/Gut6Lpty
+            mOJLIyYDNrt33c6zt0s69DdzypY5pSNmmVbkATXh9rnPySkMmL7t49bMmk4iufW5
+            t7OmVkhuW9R4JnzKTJsE/9KEwabnJo5Lvdk62e0yMN0z3f5ow4WPveBmALkD7Qbk
+            b320JB6ro28/QwXcvN5gJjajkztGvWaV/ZrTy2Gn0fwX27frciXkhvp3PcOyO0bf
+            UQsbj2sHayy2a5hl9QFEn4jpBRuL6GpzFDkdxC5uVrjxWyOMVHXheELldSbz2djM
+            DknjHjsHReNEihceGOkukYpfYI4IOZkCFcvxXWp7z+LB6JANP1rZzyttbg8SDoXS
+            XgHKuvo4qvswhXaG/SOnOT14G6fIlk4zqBwUFFdfnYTTVv+U5bLy1req6KPuAaji
+            oGHnSg54oQKUgrgTNI5vuvKMb9pELBbHQwL59FnWkF1WesOOIWaSIecljaaBOhI=
+            =HkXh
             -----END PGP MESSAGE-----
           fp: BB0ED0CE71E0563ECF6C6F74D4B198B463FEB92F
     encrypted_regex: ^password$
