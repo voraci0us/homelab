@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       (fetchTarball "https://github.com/nix-community/nixos-vscode-server/tarball/master")
+      (fetchTarball "https://github.com/Mic92/sops-nix/archive/master.tar.gz")
     ];
 
   # Bootloader.
@@ -141,6 +142,32 @@
       load_key fast/data   /root/keys/zfs-fast.key
 
       ${pkgs.zfs}/bin/zfs mount -a || true
+    '';
+  };
+
+  sops.gnupg.home = "/root/.gnupg";
+  sops.gnupg.sshKeyPaths = [];
+  sops.defaultSopsFile = ./secrets.yaml;
+  sops.secrets.ssh_private_key = {
+    owner = "voraci0us";
+    mode = "0600";
+    path = "/home/voraci0us/.ssh/id_ed25519";
+  };
+
+  systemd.services.clone-homelab-repo = {
+    description = "Clone homelab repo if not present";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network-online.target" "sops-nix.service" ];
+    wants = [ "network-online.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      User = "voraci0us";
+    };
+    script = ''
+      if [ ! -d /home/voraci0us/homelab ]; then
+        ${pkgs.git}/bin/git clone git@github.com:voraci0us/homelab.git /home/voraci0us/homelab
+      fi
     '';
   };
 
