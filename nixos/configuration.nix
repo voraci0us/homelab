@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      (fetchTarball "https://github.com/nix-community/nixos-vscode-server/tarball/master")
     ];
 
   # Bootloader.
@@ -140,4 +141,7 @@
       ${pkgs.zfs}/bin/zfs mount -a || true
     '';
   };
+
+  services.vscode-server.enable = true;
+  systemd.user.services.auto-fix-vscode-server.wantedBy = [ "default.target" ];
 }
