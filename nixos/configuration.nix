@@ -179,6 +179,24 @@
     '';
   };
 
+  system.activationScripts.nixos-symlinks = {
+    deps = [ "setupSecrets" ];
+    text = ''
+      repo=/home/voraci0us/homelab/nixos
+      if [ -d "$repo" ]; then
+        for f in configuration.nix secrets.yaml; do
+          target=/etc/nixos/$f
+          if [ -f "$repo/$f" ]; then
+            if [ -e "$target" ] && [ ! -L "$target" ]; then
+              rm "$target"
+            fi
+            ln -sf "$repo/$f" "$target"
+          fi
+        done
+      fi
+    '';
+  };
+
   services.vscode-server.enable = true;
   systemd.user.services.auto-fix-vscode-server.wantedBy = [ "default.target" ];
 }
