@@ -1,4 +1,7 @@
 creation_rules:
+  - path_regex: grafana-k8s-monitoring/helmrelease.yaml
+    encrypted_regex: ^password$
+    pgp: BB0ED0CE71E0563ECF6C6F74D4B198B463FEB92F
   - path_regex: .*.yaml
     encrypted_regex: ^(data|stringData)$
     pgp: BB0ED0CE71E0563ECF6C6F74D4B198B463FEB92F
