@@ -9,7 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       (fetchTarball "https://github.com/nix-community/nixos-vscode-server/tarball/master")
-      (fetchTarball "https://github.com/Mic92/sops-nix/archive/master.tar.gz")
+      "${fetchTarball "https://github.com/Mic92/sops-nix/archive/master.tar.gz"}/modules/sops"
     ];
 
   # Bootloader.
