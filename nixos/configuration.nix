@@ -2,12 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      /etc/nixos/hardware-configuration.nix
       (fetchTarball "https://github.com/nix-community/nixos-vscode-server/tarball/master")
       "${fetchTarball "https://github.com/Mic92/sops-nix/archive/master.tar.gz"}/modules/sops"
     ];
@@ -195,6 +195,33 @@
         done
       fi
     '';
+  };
+
+  services.litestream = {
+    enable = true;
+    settings = {
+      dbs = [
+        {
+          path = "/var/lib/rancher/k3s/server/db/state.db";
+          replicas = [
+            {
+              path = "/tank/k3s-sqlite";
+            }
+          ];
+        }
+      ];
+    };
+  };
+
+  # k3s db is root-owned; litestream must run as root to read it
+  systemd.services.litestream = {
+    after = [ "k3s.service" ];
+    requires = [ "k3s.service" ];
+    serviceConfig = {
+      User = lib.mkForce "root";
+      Group = lib.mkForce "root";
+      DynamicUser = lib.mkForce false;
+    };
   };
 
   services.vscode-server.enable = true;
