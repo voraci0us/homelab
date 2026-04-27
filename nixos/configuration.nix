@@ -154,11 +154,19 @@
     path = "/home/voraci0us/.ssh/id_ed25519";
   };
 
+  programs.ssh.knownHosts = {
+    github = {
+      hostNames = [ "github.com" ];
+      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl";
+    };
+  };
+
   systemd.services.clone-homelab-repo = {
     description = "Clone homelab repo if not present";
     wantedBy = [ "multi-user.target" ];
     after = [ "network-online.target" "sops-nix.service" ];
     wants = [ "network-online.target" ];
+    path = [ pkgs.git pkgs.openssh ];
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
@@ -166,7 +174,7 @@
     };
     script = ''
       if [ ! -d /home/voraci0us/homelab ]; then
-        ${pkgs.git}/bin/git clone git@github.com:voraci0us/homelab.git /home/voraci0us/homelab
+        git clone git@github.com:voraci0us/homelab.git /home/voraci0us/homelab
       fi
     '';
   };
