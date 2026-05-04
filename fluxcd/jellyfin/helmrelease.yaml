@@ -35,23 +35,13 @@ spec:
         enabled: true
         type: hostPath
         hostPath: /tank/media
+      cache:
+        enabled: true
+        type: pvc
+        existingClaim: jellyfin-cache
 
     ingress:
       enabled: false
-
-    jellyfin:
-      env:
-        - name: JELLYFIN_CACHE_DIR
-          value: /cache
-
-    volumes:
-      - name: cache
-        persistentVolumeClaim:
-          claimName: jellyfin-cache
-
-    volumeMounts:
-      - name: cache
-        mountPath: /cache
         
     service:
       type: LoadBalancer
