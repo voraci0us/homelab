@@ -47,6 +47,9 @@ spec:
       type: LoadBalancer
       port: 8096
 
+    securityContext:
+      privileged: true
+
     volumes:
       - name: dri
         hostPath:
