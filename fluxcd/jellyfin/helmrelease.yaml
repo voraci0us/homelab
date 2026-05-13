@@ -47,6 +47,16 @@ spec:
       type: LoadBalancer
       port: 8096
 
+    volumes:
+      - name: dri
+        hostPath:
+          path: /dev/dri
+          type: Directory
+
+    volumeMounts:
+      - name: dri
+        mountPath: /dev/dri
+
     nodeSelector: {}
     tolerations: []
     affinity: {}
