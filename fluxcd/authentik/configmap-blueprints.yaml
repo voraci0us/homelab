@@ -108,21 +108,12 @@ data:
           sign_response: true
           sp_binding: post
           default_relay_state: "https://app.voraci0.us/app"
-          name_id_mapping: !Find [authentik_providers_saml.samlpropertymapping, [name, "authentik default SAML Mapping: Username"]]
+          name_id_mapping: !Find [authentik_providers_saml.samlpropertymapping, [name, "authentik default SAML Mapping: Email"]]
           authorization_flow: !Find [authentik_flows.flow, [slug, default-provider-authorization-implicit-consent]]
           invalidation_flow: !Find [authentik_flows.flow, [slug, default-invalidation-flow]]
           property_mappings:
-            - !Find [authentik_providers_saml.samlpropertymapping, [name, "AppFlowy SAML Mapping: Email or Username"]]
+            - !Find [authentik_providers_saml.samlpropertymapping, [name, "authentik default SAML Mapping: Email"]]
             - !Find [authentik_providers_saml.samlpropertymapping, [name, "authentik default SAML Mapping: Name"]]
-        state: present
-
-      - model: authentik_providers_saml.samlpropertymapping
-        identifiers:
-          name: "AppFlowy SAML Mapping: Email or Username"
-        attrs:
-          name: "AppFlowy SAML Mapping: Email or Username"
-          saml_name: email
-          expression: "return request.user.email or request.user.username"
         state: present
 
       - model: authentik_core.application
@@ -133,7 +124,7 @@ data:
           name: AppFlowy
           slug: appflowy
           provider: !KeyOf provider-appflowy
-          policy_engine_mode: any
+          policy_engine_mode: all
           meta_launch_url: "https://app.voraci0.us"
         state: present
 
@@ -155,6 +146,30 @@ data:
           negate: false
           order: 0
           policy: null
+          target: !KeyOf application-appflowy
+          timeout: 30
+          user: null
+        state: present
+
+      - model: authentik_policies_expression.expressionpolicy
+        id: policy-appflowy-require-email
+        identifiers:
+          name: AppFlowy Require Email
+        attrs:
+          name: AppFlowy Require Email
+          expression: "return bool(request.user.email)"
+        state: present
+
+      - model: authentik_policies.policybinding
+        identifiers:
+          pk: b8f2a103-1234-4abc-8def-000000000001
+        attrs:
+          enabled: true
+          failure_result: false
+          group: null
+          negate: false
+          order: 10
+          policy: !KeyOf policy-appflowy-require-email
           target: !KeyOf application-appflowy
           timeout: 30
           user: null
