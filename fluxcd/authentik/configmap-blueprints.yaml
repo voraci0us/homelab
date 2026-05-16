@@ -108,12 +108,12 @@ data:
           sign_response: true
           sp_binding: post
           default_relay_state: "https://app.voraci0.us/app"
-          name_id_mapping: !Find [authentik_providers_saml.samlpropertymapping, [friendly_name, "authentik default SAML Mapping: Email"]]
+          name_id_mapping: !Find [authentik_providers_saml.samlpropertymapping, [name, "authentik default SAML Mapping: Email"]]
           authorization_flow: !Find [authentik_flows.flow, [slug, default-provider-authorization-implicit-consent]]
           invalidation_flow: !Find [authentik_flows.flow, [slug, default-invalidation-flow]]
           property_mappings:
-            - !Find [authentik_providers_saml.samlpropertymapping, [friendly_name, "authentik default SAML Mapping: Email"]]
-            - !Find [authentik_providers_saml.samlpropertymapping, [friendly_name, "authentik default SAML Mapping: Name"]]
+            - !Find [authentik_providers_saml.samlpropertymapping, [name, "authentik default SAML Mapping: Email"]]
+            - !Find [authentik_providers_saml.samlpropertymapping, [name, "authentik default SAML Mapping: Name"]]
         state: present
 
       - model: authentik_core.application
