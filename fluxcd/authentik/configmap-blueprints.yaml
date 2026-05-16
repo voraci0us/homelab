@@ -4,6 +4,16 @@ metadata:
   name: authentik-blueprints
   namespace: authentik
 data:
+  global.yaml: |
+    version: 1
+    entries:
+      - model: authentik_tenants.tenant
+        identifiers:
+          name: Default
+        attrs:
+          default_user_change_email: true
+        state: present
+
   jellyfin.yaml: |
     version: 1
     entries:
