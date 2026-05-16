@@ -118,12 +118,30 @@ data:
           sign_response: true
           sp_binding: post
           default_relay_state: "https://app.voraci0.us/app"
-          name_id_mapping: !Find [authentik_providers_saml.samlpropertymapping, [name, "authentik default SAML Mapping: Email"]]
+          name_id_mapping: !Find [authentik_providers_saml.samlpropertymapping, [name, "AppFlowy SAML Mapping: Fixed Admin Email (NameID)"]]
           authorization_flow: !Find [authentik_flows.flow, [slug, default-provider-authorization-implicit-consent]]
           invalidation_flow: !Find [authentik_flows.flow, [slug, default-invalidation-flow]]
           property_mappings:
-            - !Find [authentik_providers_saml.samlpropertymapping, [name, "authentik default SAML Mapping: Email"]]
+            - !Find [authentik_providers_saml.samlpropertymapping, [name, "AppFlowy SAML Mapping: Fixed Admin Email (Attribute)"]]
             - !Find [authentik_providers_saml.samlpropertymapping, [name, "authentik default SAML Mapping: Name"]]
+        state: present
+
+      - model: authentik_providers_saml.samlpropertymapping
+        identifiers:
+          name: "AppFlowy SAML Mapping: Fixed Admin Email (NameID)"
+        attrs:
+          name: "AppFlowy SAML Mapping: Fixed Admin Email (NameID)"
+          saml_name: email
+          expression: "return \"admin@appflowy.local\""
+        state: present
+
+      - model: authentik_providers_saml.samlpropertymapping
+        identifiers:
+          name: "AppFlowy SAML Mapping: Fixed Admin Email (Attribute)"
+        attrs:
+          name: "AppFlowy SAML Mapping: Fixed Admin Email (Attribute)"
+          saml_name: email
+          expression: "return \"admin@appflowy.local\""
         state: present
 
       - model: authentik_core.application
