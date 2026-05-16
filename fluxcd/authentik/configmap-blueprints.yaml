@@ -112,8 +112,17 @@ data:
           authorization_flow: !Find [authentik_flows.flow, [slug, default-provider-authorization-implicit-consent]]
           invalidation_flow: !Find [authentik_flows.flow, [slug, default-invalidation-flow]]
           property_mappings:
-            - !Find [authentik_providers_saml.samlpropertymapping, [name, "authentik default SAML Mapping: Email"]]
+            - !Find [authentik_providers_saml.samlpropertymapping, [name, "AppFlowy SAML Mapping: Email or Username"]]
             - !Find [authentik_providers_saml.samlpropertymapping, [name, "authentik default SAML Mapping: Name"]]
+        state: present
+
+      - model: authentik_providers_saml.samlpropertymapping
+        identifiers:
+          name: "AppFlowy SAML Mapping: Email or Username"
+        attrs:
+          name: "AppFlowy SAML Mapping: Email or Username"
+          saml_name: email
+          expression: "return request.user.email or request.user.username"
         state: present
 
       - model: authentik_core.application
