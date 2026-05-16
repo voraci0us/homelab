@@ -93,14 +93,6 @@ data:
   appflowy.yaml: |
     version: 1
     entries:
-      - model: authentik_crypto.certificatekeypair
-        id: appflowy-saml-cert
-        identifiers:
-          name: AppFlowy SAML Certificate
-        attrs:
-          name: AppFlowy SAML Certificate
-        state: present
-
       - model: authentik_providers_saml.samlprovider
         id: provider-appflowy
         identifiers:
@@ -110,8 +102,8 @@ data:
           acs_url: "https://app.voraci0.us/gotrue/sso/saml/acs"
           audience: "https://app.voraci0.us/gotrue/sso/saml/metadata"
           issuer: "https://idp.voraci0.us"
-          signing_kp: !KeyOf appflowy-saml-cert
-          verification_kp: !KeyOf appflowy-saml-cert
+          signing_kp: !Find [authentik_crypto.certificatekeypair, [name, "AppFlowy SAML Certificate"]]
+          verification_kp: !Find [authentik_crypto.certificatekeypair, [name, "AppFlowy SAML Certificate"]]
           sign_assertion: true
           sign_response: true
           sp_binding: post
