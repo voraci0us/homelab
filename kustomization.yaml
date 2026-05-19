@@ -9,5 +9,3 @@ resources:
   - ./fluxcd/immich
   - ./fluxcd/flux-system
   - ./fluxcd/jellyfin
-  - ./fluxcd/kubevirt
-  - ./fluxcd/sunshine

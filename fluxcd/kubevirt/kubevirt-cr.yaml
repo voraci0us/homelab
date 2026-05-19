@@ -9,9 +9,3 @@ spec:
       useEmulation: false
       featureGates:
         - HostDevices
-    permittedHostDevices:
-      pciHostDevices:
-        - pciVendorSelector: "1002:150e"
-          resourceName: "devices.kubevirt.io/amd-igpu"
-        - pciVendorSelector: "1002:1640"
-          resourceName: "devices.kubevirt.io/amd-igpu-audio"
