@@ -3,4 +3,10 @@ kind: CDI
 metadata:
   name: cdi
   namespace: kubevirt
-spec: {}
+spec:
+  config:
+    podResourceRequirements:
+      limits:
+        memory: 2Gi
+      requests:
+        memory: 256Mi
