@@ -29,14 +29,14 @@ spec:
               auth:
                 type: basic
                 username: "3145678"
-                password: ENC[AES256_GCM,data:KmHcNEFRGvD4zCcgKrG2V0FrYIuVkoy3NY2fWpdt+621j1TIQiUdH0T/42a4YMYQ/xvYp+6RERjHP+hhtfIuiH7NavonxjpAIyTCe83EGtBjd4tORx9vlM+PQshqsQMwxR86Nf1w8gujnzv0eVHgWJsXXNLJD6J6EE9GypaBVvQjbzl4RynZDwiFgJ9aPO+npVpOf53lWbjWajIoqiMlUw==,iv:EzkdAJGB2w+ITY2DDrXLutCjWA6akdqLAlamKi8ILZA=,tag:Aru/1RwUMWEIKl3Fy2SCYQ==,type:str]
+                password: ENC[AES256_GCM,data:3IqHCbq6iHGc7y4pfdv9E6+Je+Tf1YGPRDO2A99QBu544PQNLujZkht8uXPYPidYD2zbrDYsvBZxYXdD8W52DcLBJZfimpOWcO3ubOXW89QZntmVdVvRTxYEs93hhyiG+FzmclIJFwyKi+BOoB4GKi4+74XZNVKz7scMLoP9Ww8Nzg1vw8CdcXeXkriQ/aeo7Y0LvGCb4c8pNjXIgAliXw==,iv:CagAla7I5gV3Eu0+zdOPAqsfm271ED4xBl8f+ZZpkdA=,tag:ghMeQmKL7vdAjchkEZIhew==,type:str]
             - name: grafana-cloud-logs
               type: loki
               url: https://logs-prod-021.grafana.net./loki/api/v1/push
               auth:
                 type: basic
                 username: "1568514"
-                password: ENC[AES256_GCM,data:MVROV3qYJve0E5CSQn6JgZGpUqzzk5T3zz8vhtev8r6vvFZugpvrq/CkUtEioVjXK5S8OC8Zx3igjPZmIhZyD7/CqAZtUgkCcRVrsEotwkji16fbAUmgJ20c6iVoahEHiiKeZRWdUomwSJf0g2id+YohguXMUfdD5+Q2B7J7NSUxw0tFi+QtjyIe3MVu0sNeSgooZdMZEeiJZGtNvIzQAQ==,iv:XLXWZwX08G0U9hQD7xcPdjmevuOMcAOZRKFUCsW9FBM=,tag:mP2KocaMu7IRW6YZs+D2AQ==,type:str]
+                password: ENC[AES256_GCM,data:3IqHCbq6iHGc7y4pfdv9E6+Je+Tf1YGPRDO2A99QBu544PQNLujZkht8uXPYPidYD2zbrDYsvBZxYXdD8W52DcLBJZfimpOWcO3ubOXW89QZntmVdVvRTxYEs93hhyiG+FzmclIJFwyKi+BOoB4GKi4+74XZNVKz7scMLoP9Ww8Nzg1vw8CdcXeXkriQ/aeo7Y0LvGCb4c8pNjXIgAliXw==,iv:CagAla7I5gV3Eu0+zdOPAqsfm271ED4xBl8f+ZZpkdA=,tag:ghMeQmKL7vdAjchkEZIhew==,type:str]
             - name: gc-otlp-endpoint
               type: otlp
               url: https://otlp-gateway-prod-us-west-0.grafana.net./otlp
@@ -64,7 +64,7 @@ spec:
         podLogs:
             enabled: true
         applicationObservability:
-            enabled: true
+            enabled: false
             receivers:
                 otlp:
                     grpc:
@@ -214,8 +214,8 @@ spec:
                     username: "1610725"
                     password: ENC[AES256_GCM,data:eqI6Ayb0qVYnMU/a9DgTbDWiFbbKutXYJdMlS9vmVlRLRFf6BVj4j53DZqT1vldPdnPQ7/Ojwce/KksiqdSVdSq/k2poxvbLiJCZEAhciZhirmIOm2gjHJnV4buhVW8XPUYJuwZb3fdwEXbjGKFjW5rHr3UjMGGrISJkZjXGyeVy5qJaft4ArhC7cj68ory00JbBDvw4TMBGazptJWU5yQ==,iv:XeO2YXB3IyE9/HfDUEG0RzPljdyHUWqtQctuYUPzml8=,tag:kCcOs5fSYhPUfaTty6Pogw==,type:str]
 sops:
-    lastmodified: "2026-04-27T14:09:37Z"
-    mac: ENC[AES256_GCM,data:/IwgbB8F3o6kPmszd5TuG0PYsrF1fZZf+bJI93H17i0QScvodY97BRVKJWsv9X6i5yT/6ZLLxgIvUOT48ua4UJz5D+Vuee3HYZHNK4S4+fQ8TtCpKDmWNpwawLcI+TLFqAnXNPu5W0fhAnxLrw6q1AZ21ZdOvu6inRTZJRUJCCY=,iv:wOI5IFcZjMQTTjB0P/W8o659W7Fnfpg31Xqn7XREEew=,tag:N6GuS7K4nRUpMo2NCLTBCw==,type:str]
+    lastmodified: "2026-07-12T23:06:51Z"
+    mac: ENC[AES256_GCM,data:LmUefJxSNomY3KqK9Ea1x39wmSj8S3W9+SjJAfqyV+/WBuTYB8EBC1Pbtz+NOJq2uXdbQzQxU6dNL9kEWGSiq8K0rVM/OVm8x1zdEUTrw47SvaNIpKqVwakn9wSsFzHWnWJg9gtB8l5rFwDAE0t4vIyTgzv8W6p38jzH6jVgmaI=,iv:80aTCMb84cnVexXAInn/LfbdyYlLADRAZMwpokCpwBs=,tag:5PT5sIXPcaVmtFaz5qqVzA==,type:str]
     pgp:
         - created_at: "2026-04-27T14:09:37Z"
           enc: |-
