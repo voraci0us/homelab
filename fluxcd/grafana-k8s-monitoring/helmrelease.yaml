@@ -8,7 +8,7 @@ spec:
     chart:
         spec:
             chart: k8s-monitoring
-            version: '>=3.0.0 <4.0.0'
+            version: '>=4.0.0 <5.0.0'
             sourceRef:
                 kind: HelmRepository
                 name: grafana
@@ -23,218 +23,90 @@ spec:
         cluster:
             name: linus
         destinations:
-            - name: grafana-cloud-metrics
-              type: prometheus
-              url: https://prometheus-prod-67-prod-us-west-0.grafana.net./api/prom/push
-              auth:
-                type: basic
-                username: "3145678"
-                password: ENC[AES256_GCM,data:3IqHCbq6iHGc7y4pfdv9E6+Je+Tf1YGPRDO2A99QBu544PQNLujZkht8uXPYPidYD2zbrDYsvBZxYXdD8W52DcLBJZfimpOWcO3ubOXW89QZntmVdVvRTxYEs93hhyiG+FzmclIJFwyKi+BOoB4GKi4+74XZNVKz7scMLoP9Ww8Nzg1vw8CdcXeXkriQ/aeo7Y0LvGCb4c8pNjXIgAliXw==,iv:CagAla7I5gV3Eu0+zdOPAqsfm271ED4xBl8f+ZZpkdA=,tag:ghMeQmKL7vdAjchkEZIhew==,type:str]
-            - name: grafana-cloud-logs
-              type: loki
-              url: https://logs-prod-021.grafana.net./loki/api/v1/push
-              auth:
-                type: basic
-                username: "1568514"
-                password: ENC[AES256_GCM,data:3IqHCbq6iHGc7y4pfdv9E6+Je+Tf1YGPRDO2A99QBu544PQNLujZkht8uXPYPidYD2zbrDYsvBZxYXdD8W52DcLBJZfimpOWcO3ubOXW89QZntmVdVvRTxYEs93hhyiG+FzmclIJFwyKi+BOoB4GKi4+74XZNVKz7scMLoP9Ww8Nzg1vw8CdcXeXkriQ/aeo7Y0LvGCb4c8pNjXIgAliXw==,iv:CagAla7I5gV3Eu0+zdOPAqsfm271ED4xBl8f+ZZpkdA=,tag:ghMeQmKL7vdAjchkEZIhew==,type:str]
-            - name: gc-otlp-endpoint
-              type: otlp
-              url: https://otlp-gateway-prod-us-west-0.grafana.net./otlp
-              protocol: http
-              auth:
-                type: basic
-                username: "1610725"
-                password: ENC[AES256_GCM,data:3IqHCbq6iHGc7y4pfdv9E6+Je+Tf1YGPRDO2A99QBu544PQNLujZkht8uXPYPidYD2zbrDYsvBZxYXdD8W52DcLBJZfimpOWcO3ubOXW89QZntmVdVvRTxYEs93hhyiG+FzmclIJFwyKi+BOoB4GKi4+74XZNVKz7scMLoP9Ww8Nzg1vw8CdcXeXkriQ/aeo7Y0LvGCb4c8pNjXIgAliXw==,iv:CagAla7I5gV3Eu0+zdOPAqsfm271ED4xBl8f+ZZpkdA=,tag:ghMeQmKL7vdAjchkEZIhew==,type:str]
-              metrics:
-                enabled: true
-              logs:
-                enabled: true
-              traces:
-                enabled: false
+            grafana-cloud-metrics:
+                type: prometheus
+                url: https://prometheus-prod-67-prod-us-west-0.grafana.net./api/prom/push
+                auth:
+                    type: basic
+                    username: "3145678"
+                    password: ENC[AES256_GCM,data:EuXAfgkhB3FONJgqR/1XGT2HrjxTYD7T3pcDRVZ99O35QaY1t/SRhwCyyUkJDFOOiRWlLuZg27EzNcEPMrpF641HPVZ2SJsEmIiz3cWA6YbUilP4wDAXMnNUcNbHX7aR/J6RHp9W+CqhzU5MxVnNuQ6Dhq4CBVJwzc6pKhJNpMW9PK7lp0fVziH4DiHdbfvAM2PCY2xjXqp+HoXH4fySHA==,iv:icHcK5hW4I55Phaq1/LKJEAwohNUo3ElUij+bgBAFlY=,tag:oq7ZflRjuxnMje08icbIQw==,type:str]
+            grafana-cloud-logs:
+                type: loki
+                url: https://logs-prod-021.grafana.net./loki/api/v1/push
+                auth:
+                    type: basic
+                    username: "1568514"
+                    password: ENC[AES256_GCM,data:eONJ6u1aIsbxUa9Oy/Fasw/N1SZL6SXsapuUrmBFEzi/69MqK2xLWhIwCaKzIv84L9X1ROJmqj1Ggj+L7SwVX8dpWALAMhhP4HukT1UMz85QBy+JDzXDJaN/enDV4gQOm6eT/o1izT5zSvajRnIXBDVw3bV7bYVA014f7skCwnXNvt/fAvXBJ1LT1WFWhLJd9BIccr/yg6aZJ2W8wkax1A==,iv:SwpVmLrcTBlu8Q6gKf8YyO/OPm2j2YFKwxYUrxXZPhY=,tag:Vw9rAlHPn96NGeVkLVBvZQ==,type:str]
         clusterMetrics:
             enabled: true
-            kepler:
-                enabled: false
+            collector: alloy-metrics
+        hostMetrics:
+            enabled: true
+            collector: alloy-metrics
+            linuxHosts:
+                enabled: true
+            windowsHosts:
+                enabled: true
         annotationAutodiscovery:
             enabled: true
+            collector: alloy-metrics
         clusterEvents:
             enabled: true
-        nodeLogs:
+            collector: alloy-singleton
+        podLogsViaLoki:
             enabled: true
-        podLogs:
-            enabled: true
-        applicationObservability:
-            enabled: false
-            receivers:
-                otlp:
-                    grpc:
-                        enabled: true
-                        port: 4317
-                    http:
-                        enabled: true
-                        port: 4318
-                zipkin:
-                    enabled: true
-                    port: 9411
-        autoInstrumentation:
-            enabled: false
-        profiling:
-            enabled: false
-        alloy-metrics:
-            enabled: true
+            collector: alloy-logs
+        integrations:
+            collector: alloy-metrics
             alloy:
-                extraEnv:
-                    - name: GCLOUD_RW_API_KEY
-                      valueFrom:
-                        secretKeyRef:
-                            name: alloy-metrics-remote-cfg-grafana-k8s-monitoring
-                            key: password
-                    - name: CLUSTER_NAME
-                      value: linus
-                    - name: NAMESPACE
-                      valueFrom:
-                        fieldRef:
-                            fieldPath: metadata.namespace
-                    - name: POD_NAME
-                      valueFrom:
-                        fieldRef:
-                            fieldPath: metadata.name
-                    - name: GCLOUD_FM_COLLECTOR_ID
-                      value: grafana-k8s-monitoring-$(CLUSTER_NAME)-$(NAMESPACE)-$(POD_NAME)
-            remoteConfig:
-                enabled: true
-                url: https://fleet-management-prod-014.grafana.net
-                auth:
-                    type: basic
-                    username: "1610725"
-                    password: ENC[AES256_GCM,data:cquWeLjNZw1beIXKEgArEpGcXiuTYKe7o/fJ7W3yFyRiPj3DSPP8lhD1pGXD0+WuDObK4SAJjuDYbc5z83eIDJvlJeRVmTphTbzU3+AaQ5Z48lvLIpz6QFDK9KLMwu2mmDTztMS/va33k7sA/BzmIDGMdfNnAFRSL0ll3LssyhG/strsdaIcOlPxg3bCN88xk1R+JxShnB+WlhGr3CGsKA==,iv:gg7s6yUWpCn1S7J+UQljcG6tuvFLaPZvTmfdb0f9phs=,tag:WpOUsXetlsrTGVF8xsvAzA==,type:str]
-        alloy-singleton:
-            enabled: true
-            alloy:
-                extraEnv:
-                    - name: GCLOUD_RW_API_KEY
-                      valueFrom:
-                        secretKeyRef:
-                            name: alloy-singleton-remote-cfg-grafana-k8s-monitoring
-                            key: password
-                    - name: CLUSTER_NAME
-                      value: linus
-                    - name: NAMESPACE
-                      valueFrom:
-                        fieldRef:
-                            fieldPath: metadata.namespace
-                    - name: POD_NAME
-                      valueFrom:
-                        fieldRef:
-                            fieldPath: metadata.name
-                    - name: GCLOUD_FM_COLLECTOR_ID
-                      value: grafana-k8s-monitoring-$(CLUSTER_NAME)-$(NAMESPACE)-$(POD_NAME)
-            remoteConfig:
-                enabled: true
-                url: https://fleet-management-prod-014.grafana.net
-                auth:
-                    type: basic
-                    username: "1610725"
-                    password: ENC[AES256_GCM,data:pHmilSk+DCUe5H3xZmHczUdEQgB9OyhlafxG6CV0vRxeNyZWWP8Park5M78gLt2FKcxAjvV67/PSDZeX+OQOAKnearEzlY/rlQaNqgpGHpSAL2C3CG7fwe60EnIMerUrW9JrDN55+/xVWaG1yh5UGPkAzOyXgRSPeyFZcToIupxenqu21ti+F+Gnv0eFabnKYXdZoUz9GW/D37IzIWO5Dg==,iv:34+Q7J9aDMiVMRePktCzW4kI+GGvDU7TicZ2ee7HZ70=,tag:W4xakJQ7AKr6Xi+WxGv0Hg==,type:str]
-        alloy-logs:
-            enabled: true
-            alloy:
-                extraEnv:
-                    - name: GCLOUD_RW_API_KEY
-                      valueFrom:
-                        secretKeyRef:
-                            name: alloy-logs-remote-cfg-grafana-k8s-monitoring
-                            key: password
-                    - name: CLUSTER_NAME
-                      value: linus
-                    - name: NAMESPACE
-                      valueFrom:
-                        fieldRef:
-                            fieldPath: metadata.namespace
-                    - name: POD_NAME
-                      valueFrom:
-                        fieldRef:
-                            fieldPath: metadata.name
-                    - name: NODE_NAME
-                      valueFrom:
-                        fieldRef:
-                            fieldPath: spec.nodeName
-                    - name: GCLOUD_FM_COLLECTOR_ID
-                      value: grafana-k8s-monitoring-$(CLUSTER_NAME)-$(NAMESPACE)-alloy-logs-$(NODE_NAME)
-            remoteConfig:
-                enabled: true
-                url: https://fleet-management-prod-014.grafana.net
-                auth:
-                    type: basic
-                    username: "1610725"
-                    password: ENC[AES256_GCM,data:8jwk69ZRz6d2k//RWoNLRZG+cuHwukkTu0LehnH18ywhMXmsUY1sYbUZRSzrRxEDBsCuzJb/r/g9qvhsH8TVt576fArXnZHA0G+1bnwQaRU1Tcll/hWRcWyJ3oMTl/FPZ67+K6U89J7xryQsjlIgOpUmSiBeGOGDobXRp1zmC/cVuBfM0IblKMv1KmCwP/THoK4+JDPY31ItLstFSSBuRQ==,iv:liiu/GWtmUQhy6r7/0cnBZlOP7oYtp93ZKqehjS8QRo=,tag:X8USO8jbtww5wyCHDMkH6w==,type:str]
-        alloy-receiver:
-            enabled: true
-            alloy:
-                extraPorts:
-                    - name: otlp-grpc
-                      port: 4317
-                      targetPort: 4317
-                      protocol: TCP
-                    - name: otlp-http
-                      port: 4318
-                      targetPort: 4318
-                      protocol: TCP
-                    - name: zipkin
-                      port: 9411
-                      targetPort: 9411
-                      protocol: TCP
-                extraEnv:
-                    - name: GCLOUD_RW_API_KEY
-                      valueFrom:
-                        secretKeyRef:
-                            name: alloy-receiver-remote-cfg-grafana-k8s-monitoring
-                            key: password
-                    - name: CLUSTER_NAME
-                      value: linus
-                    - name: NAMESPACE
-                      valueFrom:
-                        fieldRef:
-                            fieldPath: metadata.namespace
-                    - name: POD_NAME
-                      valueFrom:
-                        fieldRef:
-                            fieldPath: metadata.name
-                    - name: NODE_NAME
-                      valueFrom:
-                        fieldRef:
-                            fieldPath: spec.nodeName
-                    - name: GCLOUD_FM_COLLECTOR_ID
-                      value: grafana-k8s-monitoring-$(CLUSTER_NAME)-$(NAMESPACE)-alloy-receiver-$(NODE_NAME)
-            remoteConfig:
-                enabled: true
-                url: https://fleet-management-prod-014.grafana.net
-                auth:
-                    type: basic
-                    username: "1610725"
-                    password: ENC[AES256_GCM,data:eqI6Ayb0qVYnMU/a9DgTbDWiFbbKutXYJdMlS9vmVlRLRFf6BVj4j53DZqT1vldPdnPQ7/Ojwce/KksiqdSVdSq/k2poxvbLiJCZEAhciZhirmIOm2gjHJnV4buhVW8XPUYJuwZb3fdwEXbjGKFjW5rHr3UjMGGrISJkZjXGyeVy5qJaft4ArhC7cj68ory00JbBDvw4TMBGazptJWU5yQ==,iv:XeO2YXB3IyE9/HfDUEG0RzPljdyHUWqtQctuYUPzml8=,tag:kCcOs5fSYhPUfaTty6Pogw==,type:str]
+                instances:
+                    - name: alloy
+                      labelSelectors:
+                        app.kubernetes.io/name:
+                            - alloy-metrics
+                            - alloy-singleton
+                            - alloy-logs
+        collectors:
+            alloy-metrics:
+                presets:
+                    - clustered
+                    - statefulset
+            alloy-singleton:
+                presets:
+                    - singleton
+            alloy-logs:
+                presets:
+                    - filesystem-log-reader
+                    - daemonset
+        telemetryServices:
+            kube-state-metrics:
+                deploy: true
+            node-exporter:
+                deploy: true
+            windows-exporter:
+                deploy: true
 sops:
-    lastmodified: "2026-07-12T23:06:51Z"
-    mac: ENC[AES256_GCM,data:LmUefJxSNomY3KqK9Ea1x39wmSj8S3W9+SjJAfqyV+/WBuTYB8EBC1Pbtz+NOJq2uXdbQzQxU6dNL9kEWGSiq8K0rVM/OVm8x1zdEUTrw47SvaNIpKqVwakn9wSsFzHWnWJg9gtB8l5rFwDAE0t4vIyTgzv8W6p38jzH6jVgmaI=,iv:80aTCMb84cnVexXAInn/LfbdyYlLADRAZMwpokCpwBs=,tag:5PT5sIXPcaVmtFaz5qqVzA==,type:str]
+    lastmodified: "2026-07-13T00:00:30Z"
+    mac: ENC[AES256_GCM,data:0SXK8tn3vrLuugsOfeCNqE8K7Nc+ZrAeyE9B9KKQPLns7/udG5qT+jXi599pJY7h5HusecnvDMYGogXiERWpMQvaB+icHTakrHpvkkerGKvlsG6/qv7Y/Aql4V6foC2Oykty2bDs1kfnxJMWcn3mfrlDv/pbcD5icE3hStUvnOw=,iv:NDUdrNDRitfglOWpHaRrSONC7nb3jBpGi97zTqYEi6I=,tag:VDdtluf1SwET3D5o65+u5A==,type:str]
     pgp:
-        - created_at: "2026-04-27T14:09:37Z"
+        - created_at: "2026-07-13T00:00:30Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA5TdUnsBXCsAARAAtuuXhS9b4VMpuvSoZwIP8hOzcJIPT19RfrzHP2YZoSN+
-            r2uvA82/yPFqn5CtRNxQDVcrk3MnwrW1GXQvUspP+ve2aYwFWUYrclREE6/ZnNRb
-            fE2BDxdYpNpHXM4bVTo66GYzhhVjm5VKCSecCyhtNztFyVRMyLO6rcczr0CsWlqg
-            98vOSuqRx2g1M7T11ZmIUR0NvTSRH9GfnTW9scLhq98KO/gMjAsaXxAlIQ02VqQf
-            zcl0epLn6Mqgx4YTQJ8wCyza4tSt/cgYO96mLjb/gtSTK/ppM+9cWSa/fATi5tfK
-            SlUSRWERMtbiOEdchHujd4c5Iz8ADs/9yPp/jsq2EQQ+79y3/670Zbf/Gut6Lpty
-            mOJLIyYDNrt33c6zt0s69DdzypY5pSNmmVbkATXh9rnPySkMmL7t49bMmk4iufW5
-            t7OmVkhuW9R4JnzKTJsE/9KEwabnJo5Lvdk62e0yMN0z3f5ow4WPveBmALkD7Qbk
-            b320JB6ro28/QwXcvN5gJjajkztGvWaV/ZrTy2Gn0fwX27frciXkhvp3PcOyO0bf
-            UQsbj2sHayy2a5hl9QFEn4jpBRuL6GpzFDkdxC5uVrjxWyOMVHXheELldSbz2djM
-            DknjHjsHReNEihceGOkukYpfYI4IOZkCFcvxXWp7z+LB6JANP1rZzyttbg8SDoXS
-            XgHKuvo4qvswhXaG/SOnOT14G6fIlk4zqBwUFFdfnYTTVv+U5bLy1req6KPuAaji
-            oGHnSg54oQKUgrgTNI5vuvKMb9pELBbHQwL59FnWkF1WesOOIWaSIecljaaBOhI=
-            =HkXh
+            hQIMA5TdUnsBXCsAARAAyv8LhXlnn8jSno8QSihfKa4lRTRscnMUXrMuMl6vcZsQ
+            x3USLE57ImzjJeEF0QVPg2IwBg1JPRwFJdS4fKTgI1rCpwusTP6d0/Mz7tvCGiCn
+            6YQ0QqdLayJwfJMS/uwbvKZh0LpFNj4DWSXrBtJF0NQZN2x02ql3l5F7OSl66dWy
+            g977Vv5cIcIZBCL2Xc+2U1S3ZJGGIai7RYPshcihIInHF8+Gz0NaM6PzlJ+FwVb0
+            U2V9/OoNwMXnkQBU8DLPNHd3WL0q/iIFpwDuouB5LBbznpJcnDWiKqhtgDo0D8ok
+            U2/rSdiR5cGQZbX54bWAEtD+u05bVAg+/vZejvPdiWhLlkyyDdvbQ2Y0Qg5rWXra
+            5pEOuZQ212dtmSDIChxijjuyGB6HipJ92Tb6DU1hiR73L1BzXw22ag8NJl99kBw4
+            rASF0lPBsNCX2piJsTUeelHWBCZg/HJl/4ofLkKr1ddqRTG+27uncAl/60RV90Eo
+            A8kHaXP2Q3kF0TmpGSNry3Fq1hEI4kQ4W7xvSzvJpQGtRC9qe3F9kLxSbab/WIFk
+            cDaPn7ep1To8wcKF2MbtHLruG0KByjkfp1f0M8z1TYOGwYIG/149ZJ7UY1GCzuzZ
+            nz7hcud6/r02VDTxc5nHpEfydYiRGiOUq2Sjwu2pd5G9IqslX4gFtYazwu6D9rjS
+            XgGzSNZ62PjspvptCoJVxbnpBNARmyCQinxGtHIqxt/fXktaQ0Tm49T6GI5OGP2Z
+            5GGFVoI9WTNhxaXUZuEPGkL3kMN7Xr7nawnL0xzWXqMhpJR9HDtKrBIGnzOWUxA=
+            =nT3r
             -----END PGP MESSAGE-----
           fp: BB0ED0CE71E0563ECF6C6F74D4B198B463FEB92F
     encrypted_regex: ^password$
