@@ -7,6 +7,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   storageClassName: zfs-local-dataset
+  volumeName: pvc-aaa0d39b-84f6-4026-98a9-3c056a2f1bec
   resources:
     requests:
       storage: 500Gi
